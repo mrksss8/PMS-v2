@@ -1,0 +1,29 @@
+****usefull links
+
+//to get permission of roles;
+https://stackoverflow.com/questions/53922452/how-to-get-a-list-of-roles-with-certain-permission-in-spatie-permission-laravel
+
+
+//to allign button horizontally in td of table -- (i use style="white-space:nowrap")
+https://stackoverflow.com/questions/38039260/how-to-place-forms-horizontal-inside-a-td-tag
+
+//Get the roles the user
+https://github.com/spatie/laravel-permission/issues/406
+https://stackoverflow.com/questions/57564792/laravel-spatie-roles-get-current-users-role
+
+//active navbar
+https://blog.quickadminpanel.com/laravel-how-to-make-menu-item-active-by-urlroute/
+
+//relationship cheatsheet
+https://medium.com/hackernoon/eloquent-relationships-cheat-sheet-5155498c209
+
+//batch insert
+https://www.youtube.com/watch?v=Tc72Xzjm_aw&t=8s
+
+****
+
+
+****
+
+kung sino ang may foreign key, sya ang lalagyan mo kung sino ang belong na class na kanya
+****

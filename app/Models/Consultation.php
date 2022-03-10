@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+
+
+class Consultation extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['department','blood_pressure','temperature','respiratory_rate','capillary_refill','weight','pulse_rate','patient_id',
+                            'onset','provoke','quality','severity','time','allergies','past_medication','last_meal','leading_up_to_emergency',
+                            'severe'];
+
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
+    public function complaints()
+    {
+       return $this->hasMany(Complaint::class);
+    }
+
+    public function getComplaints($id){
+
+        $complaints = DB::table('complaints')
+        ->select('complaint','created_at')
+        ->where('consultation_id', '=', $id)
+        ->get();
+
+        return $complaints;
+
+        
+    }
+
+}
