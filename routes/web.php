@@ -58,17 +58,27 @@ Route::group([ 'prefix' => 'consultation', 'middleware' => 'auth'], function() {
 });
 
 //intervention
-Route::group([ 'prefix' => 'intervention', 'middleware' => 'auth'], function() {
-    Route::get('_nurse/show/{id}',[App\Http\Controllers\NurseInterventionController::class, 'show'])->name('nurse_intervention.show');
+Route::group([ 'prefix' => 'nurse_intervention', 'middleware' => 'auth'], function() {
+    Route::get('/show/{id}',[App\Http\Controllers\NurseInterventionController::class, 'show'])->name('nurse_intervention.show');
     Route::post('/store',[App\Http\Controllers\NurseInterventionController::class, 'store'])->name('nurse_intervention.store');
 });
 
 //doctor-Intervention
 Route::group([ 'prefix' => 'doctor-intervention', 'middleware' => 'auth'], function() {
     Route::get('index',[App\Http\Controllers\DoctorInterventionController::class, 'index'])->name('doctor_intervention.index');
-   
+    Route::get('/show/{id}',[App\Http\Controllers\DoctorInterventionController::class, 'show'])->name('doctor_intervention.show');
+    Route::post('/store',[App\Http\Controllers\DoctorInterventionController::class, 'store'])->name('doctor_intervention.store');
 });
 
+//patient-diagnosis
+Route::group([ 'prefix' => 'patient-diagnosis', 'middleware' => 'auth'], function() {
+    Route::post('/store',[App\Http\Controllers\PatientDiagnosisController::class, 'store'])->name('patient_diagnosis.store');
+});
+
+//medical-record
+Route::group([ 'prefix' => 'medical_record', 'middleware' => 'auth'], function() { 
+    Route::get('/show/{id}',[App\Http\Controllers\MedicalRecordsController::class, 'show'])->name('medical_records.show');
+});
 Route::get('/', function () {
     return view('welcome');
 });

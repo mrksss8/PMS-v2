@@ -14,12 +14,12 @@
                                 {{-- <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#store">
                                     Add Patient
                                 </button> --}}
-                                
+
                             </div>
 
                             <div class="mt-4">
                                 <table class="table" width="100%"
-                                    style="color:black; border: 1px solid #033571; font-weight:700;" id = "myTable">
+                                    style="color:black; border: 1px solid #033571; font-weight:700;" id="myTable">
                                     <thead style="background-color: #033571;">
                                         <tr>
                                             <th style="color:white;">Full Name</th>
@@ -31,19 +31,23 @@
                                     <tbody>
 
                                         @foreach ($for_interventions as $for_intervention)
-                                            <tr style="border: 1px solid #033571;">
-                                                
-                                                <td>
-                                                    {{$for_intervention->patient->last_name}}, {{$for_intervention->patient->first_name}} {{$for_intervention->patient->middle_name}}
-                                                </td>
-                                                <td>
-                                                    {{$for_intervention->patient->department->department}}
-                                                </td>
-                                                <td>
-                                                    <a href="#"
-                                                        class="btn btn-outline-primary">View</a>
-                                                </td>
-                                            </tr>
+                                            @if ($for_intervention->doctor_intervention == null)
+                                                <tr style="border: 1px solid #033571;">
+
+                                                    <td>
+                                                        {{ $for_intervention->patient->last_name }},
+                                                        {{ $for_intervention->patient->first_name }}
+                                                        {{ $for_intervention->patient->middle_name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $for_intervention->patient->department->department }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('doctor_intervention.show', $for_intervention->id) }}"
+                                                            class="btn btn-outline-primary">View</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
 
                                     </tbody>
@@ -329,7 +333,7 @@
                 responsive: true,
                 fixedColumns: true
             });
-            
+
         });
     </script>
 @endsection

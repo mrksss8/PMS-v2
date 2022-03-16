@@ -27,3 +27,12 @@ https://www.youtube.com/watch?v=Tc72Xzjm_aw&t=8s
 
 kung sino ang may foreign key, sya ang lalagyan mo kung sino ang belong na class na kanya
 ****
+
+
+
+
+//todo
+1. view for intervention
+2. add diagnosis
+3. add intervention
+4. view medical records

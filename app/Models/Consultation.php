@@ -34,9 +34,17 @@ class Consultation extends Model
         ->where('consultation_id', '=', $id)
         ->get();
 
-        return $complaints;
+        return $complaints;  
+    }
 
-        
+    public function patient_diagnosis()
+    {
+       return $this->hasMany(PatientDiagnosis::class);
+    }
+
+    public function doctor_intervention(){
+
+        return $this->hasOne(DoctorIntervention::class);
     }
 
 }

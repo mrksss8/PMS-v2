@@ -29,7 +29,7 @@ class CreateNurseInterventionsTable extends Migration
             $table->string('sent_to_emer_refuse_waiver')->nullable();
             $table->string('other_intervention_info')->nullable();
 
-            //patient foreign key
+            //consulataion foreign key
             $table->unsignedBigInteger('consultation_id');
             $table->foreign('consultation_id')->references('id')->on('consultations');
             $table->timestamps();

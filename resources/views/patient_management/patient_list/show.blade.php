@@ -25,11 +25,11 @@
                                                     {{ $patient->middle_name }} {{ $patient->last_name }}s</h5>
                                                 <p class="m-0">{{ $patient->department->department }}</p>
                                             </div>
-                                            <div class="c-work-part flex-grow-1 d-flex justify-content-end">
+                                            {{-- <div class="c-work-part flex-grow-1 d-flex justify-content-end">
                                                 <div class="d-none d-sm-none d-md-none d-xl-block">
                                                     <button class="btn btn-primary"> General Nurse</button>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="card-body pt-0">
@@ -137,7 +137,7 @@
                                                             </span>
                                                         @endforeach
                                                         <div class="d-flex justify-content-center mt-3">
-                                                            <button class="btn btn-sm btn-primary px-4">View</button>
+                                                            <a href="{{ route('medical_records.show',$consultation->id) }}" class="btn btn-sm btn-primary px-4">View</a>
                                                         </div>
                                                     </div>
                                                 @empty
