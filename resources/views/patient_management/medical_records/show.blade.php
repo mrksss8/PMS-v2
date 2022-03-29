@@ -278,6 +278,58 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
+                                 <!-- labtest --> 
+                                 <div class="col-md-12">
+                                    <div class="card shadow px-0">
+                                        <div class="col-12">
+                                            <div class="card-header px-0">
+                                                <span style="color:white; background-color: #033571; width: 100%;"
+                                                    class="px-3">
+                                                    Lab Test
+                                                </span>
+                                            </div>
+                                            <div class="card-body py-0">
+                                                <div class="row">
+                                                    @foreach ($consultation->lab_tests as $lab_test)
+                                                        
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="form-group mb-1 mt-3">
+                                                            <span style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-8">
+                                                        <div class="form-group mb-1 mt-3">
+                                                            @if ($lab_test->filename != null)
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style=" font-weight: 700;">{{ $lab_test->filename }}</span>
+                                                                    {{-- <img src="{{ '/storage/'.$lab_test->path }}"> --}}
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <button type="button" class="btn btn-primary btn-sm labtest_img" data-toggle="modal"
+                                                                    data-target="#labtest_img" 
+                                                                    data-labtest_path="{{ $lab_test->path }}">
+                                                                    View</button>
+                                                                    <button class = "btn btn-success btn-sm">Download</button>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            @else
+                                                                
+                                                            No Uploaded Labtest
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -398,4 +450,45 @@
         </div>
         </div>
     </section>
+
+     <!-- Labtest Modal -->
+     <div class="modal fade" id="labtest_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle" style="color: #033571;">Lab Test Image</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+                 <div class="modal-body">
+                     <div class="card-body">
+                         <div style="display: flex; justify-content: center;">
+                             <img style="border:1px solid #033571;" id= "img">
+                     </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+         </div>
+     </div>
+ </div>
 @endsection
+
+
+@section('scripts')
+
+<script>  
+    $(document).ready(function() {
+
+        $('.labtest_img').click(function() {
+               $("#img").attr("src","/storage/"+$(this).data('labtest_path'));
+        });
+
+    });
+</script>
+
+@endsection
+

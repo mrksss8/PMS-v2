@@ -41,11 +41,25 @@
 
 
 @can('inventory permission')
-    <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-        <a class="nav-link" href="#">
+
+<li class="nav-item dropdown">
+    <a href="" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"
+            style="color: #033571;"></i> <span>Inventory</span></a>
+    <ul class="dropdown-menu" style="">
+        <li><a class="nav-link pl-5" href="{{ route('inventory.index') }}" style="color: #033571; font-weight:600;"><i
+                    class=" fas fa-building icon" style="color: #033571;"></i>Medicine/Supply</a></li>
+        {{-- <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i
+                    class=" fas fa-building icon" style="color: #033571;"></i>Delivery</a></li>
+        <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i
+                    class=" fas fa-building icon" style="color: #033571;"></i>Option</a></li> --}}
+
+    </ul>
+</li>
+    {{-- <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('inventory.index') }}">
             <i class=" fas fa-building icon" style="color: #033571;"></i> <span>Inventory</span>
         </a>
-    </li>
+    </li> --}}
 @endcan
 
 

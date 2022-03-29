@@ -79,9 +79,56 @@ Route::group([ 'prefix' => 'patient-diagnosis', 'middleware' => 'auth'], functio
 Route::group([ 'prefix' => 'medical_record', 'middleware' => 'auth'], function() { 
     Route::get('/show/{id}',[App\Http\Controllers\MedicalRecordsController::class, 'show'])->name('medical_records.show');
 });
+
+//add labtest
+Route::group([ 'prefix' => 'labtest', 'middleware' => 'auth'], function() {
+    Route::post('/update/{id}',[App\Http\Controllers\ReqLabController::class, 'update'])->name('req_lab.update');
+});
+
+//labtest viewer
+Route::get('/labtest/preview', function () {
+    return view('labtestviewer.labtestview');
+
+})->name('labtest.preview');
+
+//Inventory
+Route::group([ 'prefix' => 'inventory', 'middleware' => 'auth'], function() {
+    Route::get('index',[App\Http\Controllers\InventoryController::class, 'index'])->name('inventory.index');
+});
+
+//medecine category
+Route::group([ 'prefix' => 'medicine_category', 'middleware' => 'auth'], function() {
+
+    Route::post('/store',[App\Http\Controllers\MedicineCategoryController::class, 'store'])->name('medicine_category.store');
+});
+
+//medecine 
+Route::group([ 'prefix' => 'medicine', 'middleware' => 'auth'], function() {
+
+    Route::post('/store',[App\Http\Controllers\MedicineController::class, 'store'])->name('medicine.store');
+    Route::put('/update/{id}',[App\Http\Controllers\MedicineController::class, 'update'])->name('medicine.update');
+});
+
+//supply
+Route::group([ 'prefix' => 'supply', 'middleware' => 'auth'], function() {
+
+    Route::post('/store',[App\Http\Controllers\SupplyController::class, 'store'])->name('supply.store');
+    Route::put('/update/{id}',[App\Http\Controllers\SupplyController::class, 'update'])->name('supply.update');
+});
+
+
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

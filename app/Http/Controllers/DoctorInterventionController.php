@@ -67,7 +67,7 @@ class DoctorInterventionController extends Controller
     public function show($id)
     {
         // dd($consultation);
-        $consultation = Consultation::with('patient','complaints','patient_diagnosis')->findorfail($id);
+        $consultation = Consultation::with('patient','complaints','patient_diagnosis','lab_tests')->findorfail($id);
         return view('intervention.doctor_intervention.show',compact('consultation'));
     }
 

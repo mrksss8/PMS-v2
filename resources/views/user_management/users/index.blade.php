@@ -9,7 +9,7 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
 
                             <div class="d-flex justify-content-end">
@@ -190,7 +190,7 @@
         </div>
     </div>
 
-    <!-- Department Modal edit-->
+    <!-- user Modal edit-->
     <div class="modal fade edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

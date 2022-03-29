@@ -423,7 +423,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Diabetes">
+                                                    value="CBC">
                                                 <label class="form-check-label">
                                                     CBC
                                                 </label>
@@ -432,7 +432,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="low_grade_fever">
+                                                    value="Xray">
                                                 <label class="form-check-label">
                                                     Xray
                                                 </label>
@@ -442,7 +442,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="body_pain">
+                                                    value="DrugTest">
                                                 <label class="form-check-label">
                                                     Drug Test
                                                 </label>
@@ -451,7 +451,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="LBM">
+                                                    value="Fecalysist">
                                                 <label class="form-check-label">
                                                     Fecalysis
                                                 </label>
@@ -461,7 +461,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="cut">
+                                                    value="Urinalysis">
                                                 <label class="form-check-label">
                                                     Urinalysis
                                                 </label>
@@ -470,7 +470,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="wounds">
+                                                    value="RT-PCRTest">
                                                 <label class="form-check-label">
                                                     RT-PCR Test
                                                 </label>
@@ -479,7 +479,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="wounds">
+                                                    value="AntigenTest">
                                                 <label class="form-check-label">
                                                     Antigen Test
                                                 </label>
@@ -488,7 +488,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="wounds">
+                                                    value="CT-scan">
                                                 <label class="form-check-label">
                                                     CT-scan
                                                 </label>
@@ -499,7 +499,7 @@
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <label>Other/s, pls specify </label>
-                                                <input type="text" class="form-control" name="other_req_Labtest"
+                                                <input type="text" class="form-control" name="req_LabTest[]"
                                                     tabindex="15" autofocus>
                                             </div>
                                         </div>

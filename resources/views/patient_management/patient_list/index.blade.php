@@ -8,7 +8,7 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#store">

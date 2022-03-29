@@ -8,7 +8,7 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12 ">
-                    <div class="card custom-border">
+                    <div class="card shadow">
                         <div class="card-header">
                             <h5 class="text-primary">Department</h5>
                         </div>
@@ -125,7 +125,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="edit" method="POST">
+                    <form id="update" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -191,6 +191,21 @@
             $('.department-delete').each(function() {
                 $(this).click(function(event) {
                     $('#delete').attr("action", "/departments/destroy/" + $(this).data('uid') + "");
+
+                });
+            });
+        });
+    </script>
+
+    <!-- edit script -->
+    <script>
+        $(document).ready(function() {
+            // $('option').val($(this).data('role')).attr('selected', 'selected');
+
+            $('.department-edit').each(function() {
+                $(this).click(function(event) {
+                    $('#update').attr("action", "/departments/update/" + $(this).data('uid') + "");
+                    $('input[name="department"]').val($(this).data('dept'));
 
                 });
             });

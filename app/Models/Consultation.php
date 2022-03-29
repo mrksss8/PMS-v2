@@ -27,6 +27,11 @@ class Consultation extends Model
        return $this->hasMany(Complaint::class);
     }
 
+    public function lab_tests()
+    {
+       return $this->hasMany(ReqLab::class);
+    }
+
     public function getComplaints($id){
 
         $complaints = DB::table('complaints')

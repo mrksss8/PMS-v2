@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Complaint;
+use App\Models\ReqLab;
 use Carbon\Carbon;
 
 class ConsultationController extends Controller
@@ -81,7 +82,25 @@ class ConsultationController extends Controller
                         ]
                     ];   
                     Complaint::insert($complaints);
-                }
+            }
+
+            //insert complaints
+            $consultation_id = $consultation->id;
+            $req_LabTest = $request->req_LabTest;
+
+            for($i = 0; $i<count($req_LabTest); $i++)
+            {
+                $req_LabTests = [
+                    [
+                        'consultation_id' =>  $consultation_id,
+                        'labtest' => $req_LabTest[$i],
+                        'created_at'        => Carbon::now(),
+                        'updated_at'        => Carbon::now(),
+                    ]
+                ];   
+                ReqLab::insert($req_LabTests);
+            }
+
                 return redirect()->route('dashboard.index');
         }
 

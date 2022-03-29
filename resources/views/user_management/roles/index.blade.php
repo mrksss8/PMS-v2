@@ -8,7 +8,7 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12 ">
-                    <div class="card custom-border">
+                    <div class="card shadow">
                         <div class="card-header">
                             <h5 class="text-primary">Roles</h5>
                         </div>

@@ -3,8 +3,8 @@
     Admin Login
 @endsection
 @section('content')
-    <div class="card card-primary">
-        <div class="card-header"><h4>Admin Login</h4></div>
+    <div class="card card-primary" style="border-color: #033571;">
+        <div class="card-header"><h4 style="color:#033571;">Admin Login</h4></div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
@@ -19,6 +19,16 @@
                     </div>
                 @endif
                 <div class="form-group">
+                    <label>Username</label>
+                    <input aria-describedby="emailHelpBlock" type="text"
+                           class="form-control" name="name"
+                           placeholder="Enter Username" tabindex="1" autofocus
+                           required>
+                    <div class="invalid-feedback">
+                       
+                    </div>
+                </div>
+                {{-- <div class="form-group">
                     <label for="email">Email</label>
                     <input aria-describedby="emailHelpBlock" id="email" type="email"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
@@ -28,7 +38,7 @@
                     <div class="invalid-feedback">
                         {{ $errors->first('email') }}
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <div class="d-block">
@@ -58,11 +68,15 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button type="submit" class="btn btn-lg btn-block" style="background:#033571; color:white;" tabindex="4">
                         Login
                     </button>
                 </div>
             </form>
         </div>
     </div>
+
+    <style>
+      
+    </style>
 @endsection
