@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DoctorIntervention;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
+use App\Models\Medicine;
+use App\Models\Supply;
 
 class DoctorInterventionController extends Controller
 {
@@ -38,25 +40,42 @@ class DoctorInterventionController extends Controller
      */
     public function store(Request $request)
     {
-        DoctorIntervention::create([
-            'medicine' => $request->medicine,
-            'med_qty' => $request->med_qty,
-            'supply' => $request->supply,
-            'supply_qty' => $request->suppply_qty,
-            'action' => $request->action,
-            'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
-            'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
-            'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
-            'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
-            'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
-            'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
-            'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
-            'other_intervention_info' => $request->other_intervention_info,
-            'consultation_id' => $request->consultation_id
-            ]);
+         DoctorIntervention::create([
+             'medicine' => $request->medicine,
+             'med_qty' => $request->med_qty,
+             'supply' => $request->supply,
+             'supply_qty' => $request->supply_qty,
+             'action' => $request->action,
+             'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+             'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+             'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+             'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+             'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+             'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+             'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+             'other_intervention_info' => $request->other_intervention_info,
+             'consultation_id' => $request->consultation_id
+             ]);
+            
+            $medicine = Medicine::findorfail($request->medicine);
+
+            
+             $new_stock =  $medicine->beginning_stock - $request->med_qty;
+
+             $medicine->beginning_stock = $new_stock;
+             $medicine->save();
+
+
+            $supply = Supply::findorfail($request->supply);
+            $new_stock =  $supply->beginning_stock - $request->supply_qty;
+
+            $supply->beginning_stock = $new_stock;
+            $supply->save();
+
 
             return redirect()->route('patients.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -66,9 +85,11 @@ class DoctorInterventionController extends Controller
      */
     public function show($id)
     {
+        $medicines = Medicine::all();
+        $supplies = Supply::all();
         // dd($consultation);
         $consultation = Consultation::with('patient','complaints','patient_diagnosis','lab_tests')->findorfail($id);
-        return view('intervention.doctor_intervention.show',compact('consultation'));
+        return view('intervention.doctor_intervention.show',compact('consultation','medicines','supplies'));
     }
 
     /**

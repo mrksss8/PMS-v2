@@ -342,7 +342,8 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Provoke</label>
+                                                <label>location</label>
+                                                <!-- provoke -->
                                                 <input type="text" class="form-control" name="provoke"
                                                     tabindex="8" autofocus >
                                             </div>
@@ -350,7 +351,8 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Quality</label>
+                                                <label>duration</label>
+                                                <!-- quality -->
                                                 <input type="text" class="form-control" name="quality"
                                                     tabindex="9" autofocus >
                                             </div>
@@ -358,7 +360,8 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Severity</label>
+                                                <label for="">Character Aggravating Factors</label>
+                                                {{-- <label>Severity</label> --}}
                                                 <input type="text" class="form-control" name="severity"
                                                     tabindex="10" autofocus >
                                             </div>
@@ -366,7 +369,16 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Time</label>
+                                                <label for="">Radiation</label>
+                                                {{-- <label>Last Meal</label> --}}
+                                                <input type="text" class="form-control" name="last_meal"
+                                                    tabindex="14" autofocus >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Time Severity</label>
                                                 <input type="text" class="form-control" name="time"
                                                     tabindex="11" autofocus >
                                             </div>
@@ -388,13 +400,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Last Meal</label>
-                                                <input type="text" class="form-control" name="last_meal"
-                                                    tabindex="14" autofocus >
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="row">
                                         <div class="col-md-9">

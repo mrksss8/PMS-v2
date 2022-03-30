@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\NurseIntervention;
+use App\Models\Medicine;
+use App\Models\Supply;
 
 class NurseInterventionController extends Controller
 {
@@ -40,7 +42,7 @@ class NurseInterventionController extends Controller
             'medicine' => $request->medicine,
             'med_qty' => $request->med_qty,
             'supply' => $request->supply,
-            'supply_qty' => $request->suppply_qty,
+            'supply_qty' => $request->supply_qty,
             'action' => $request->action,
             'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
             'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
@@ -52,6 +54,21 @@ class NurseInterventionController extends Controller
             'other_intervention_info' => $request->other_intervention_info,
             'consultation_id' => $request->consultation_id
             ]);
+
+            $medicine = Medicine::findorfail($request->medicine);
+
+            
+             $new_stock =  $medicine->beginning_stock - $request->med_qty;
+
+             $medicine->beginning_stock = $new_stock;
+             $medicine->save();
+
+
+            $supply = Supply::findorfail($request->supply);
+            $new_stock =  $supply->beginning_stock - $request->supply_qty;
+
+            $supply->beginning_stock = $new_stock;
+            $supply->save();
 
             return redirect()->route('patients.index');
     }
@@ -65,8 +82,11 @@ class NurseInterventionController extends Controller
     public function show($id)
     {
 
+        $medicines = Medicine::all();
+        $supplies = Supply::all();
+
         $consultation = Consultation::with('patient','complaints')->findorfail($id);
-        return view('intervention.nurse_intervention.show',compact('consultation'));
+        return view('intervention.nurse_intervention.show',compact('consultation','medicines','supplies'));
         
     }
 

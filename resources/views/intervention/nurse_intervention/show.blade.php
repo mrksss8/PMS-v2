@@ -211,12 +211,20 @@
                                     <div class="form-group">
                                         <label style="color: black">Medecine</label>
                                         <div class="input-group">
-                                            <div class="input-group-prepend">
+                                            {{-- <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user"></i>
                                                 </div>
-                                            </div>
-                                            <input type="text" name="medicine" class="form-control">
+                                            </div> --}}
+                                            <select style="width:367px;" class="  form-control"
+                                                name="medicine">
+
+                                                @foreach ($medicines as $medicine)
+                                                    <option value={{ $medicine->id }}>
+                                                        {{ $medicine->brand_name}} {{ $medicine->dosage}}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" name="medicine" class="form-control"> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -237,12 +245,20 @@
                                     <div class="form-group">
                                         <label style="color: black">Supply</label>
                                         <div class="input-group">
-                                            <div class="input-group-prepend">
+                                            {{-- <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user"></i>
                                                 </div>
-                                            </div>
-                                            <input type="text" name="supply" class="form-control" required>
+                                            </div> --}}
+                                            <select style="width:367px;" class="  form-control"
+                                            name="supply">
+
+                                            @foreach ($supplies as $supply)
+                                                <option value={{ $supply->id }}>
+                                                    {{ $supply->supply}}</option>
+                                            @endforeach
+                                        </select>
+                                            {{-- <input type="text" name="supply" class="form-control" required> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +271,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="suppply_qty" class="form-control" required>
+                                            <input type="text" name="supply_qty" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

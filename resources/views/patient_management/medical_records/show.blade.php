@@ -209,7 +209,8 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Provoke:</label>
+                                                                <label>location</label>
+                                                                <!-- provoke -->
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->provoke }}" disabled>
                                                             </div>
@@ -217,7 +218,8 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Quality:</label>
+                                                                <label>duration</label>
+                                                                <!-- quality -->
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->quality }}" disabled>
                                                             </div>
@@ -225,7 +227,8 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Severity:</label>
+                                                                <label for="">Character Aggravating Factors</label>
+                                                                {{-- <label>Severity</label> --}}
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->severity }}" disabled>
                                                             </div>
@@ -233,7 +236,16 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Time</label>
+                                                                <label for="">Radiation</label>
+                                                                {{-- <label>Last Meal</label> --}}
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $consultation->last_meal }}" disabled>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mb-1">
+                                                                <label>Time Severity</label>
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->time }}" disabled>
                                                             </div>
@@ -255,13 +267,7 @@
                                                                     disabled>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group mb-1">
-                                                                <label>Last Meal</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ $consultation->last_meal }}" disabled>
-                                                            </div>
-                                                        </div>
+                                                       
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">

@@ -55,7 +55,13 @@
                                              <td>{{  $medicine->maintaining_level }}</td>
                                             <td>{{  $medicine->expiration_date }}</td>
                                             <td>{{  $medicine->source }}</td> --}}
-                                                <td>{{ $medicine->remarks }}</td>
+
+                                                @if ($medicine->beginning_stock <= 0)
+                                                <td class = "bg-danger"> Inactive (OS)</td>
+                                                @else
+                                                <td>Active</td>
+                                                
+                                                @endif
                                                 <td style="white-space:nowrap;">
                                                     <button type=" button"
                                                         class="btn btn-icon btn-sm icon-left mr-3 btn-outline-primary med-add-stock"
@@ -149,7 +155,14 @@
                                                 <td>{{ $supply->beginning_stock }}</td>
                                                 {{-- <td>{{ $supply->maintaining_level }}</td> --}}
                                                 <td>{{ $supply->expiration_date }}</td>
-                                                <td>{{ $supply->remarks }}</td>
+                                                
+                                                @if ($supply->beginning_stock <= 0)
+                                                <td class = "bg-danger"> Inactive (OS)</td>
+                                                @else
+                                                <td>Active</td>
+                                                {{-- <td>{{ $supply->remarks }}</td> --}}
+                                                
+                                                @endif
                                                 <td style="white-space:nowrap;">
 
                                                     <button type="button"
@@ -188,7 +201,8 @@
                 </div>
             </div>
 
-            {{-- <div class="row">
+            <div class="row">
+                <span>(Partially place here)</span>
                 <div class="col-lg-12 ">
                     <div class="card custom-border">
                         <div class="card-header">
@@ -204,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </section>
 
