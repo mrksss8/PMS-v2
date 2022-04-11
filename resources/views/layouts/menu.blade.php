@@ -24,7 +24,7 @@
 @endcan
 
 
-@can('patient management permission')
+@can('patient management permission for doctor')
     <li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"
                 style="color: #033571;"></i> <span>Patient Management</span></a>
@@ -33,11 +33,25 @@
                         style="color: #033571;"></i>Patient List</a></li>
             {{-- <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Consultation</a></li> --}}
-            <li><a class="nav-link pl-5" href="{{route('doctor_intervention.index')}}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
-                        style="color: #033571;"></i>For Intervention</a></li>
-        </ul>
-    </li>
+                        <li><a class="nav-link pl-5" href="{{route('doctor_intervention.index')}}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+                            style="color: #033571;"></i>For Intervention</a></li>
+                        </ul>
+                    </li>
 @endcan
+
+@can('patient management permission for nurse')
+    <li class="nav-item dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"
+                style="color: #033571;"></i> <span>Patient Management</span></a>
+        <ul class="dropdown-menu" style="display: none;">
+            <li><a class="nav-link pl-5" href="{{route('patients.index')}}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+                        style="color: #033571;"></i>Patient List</a></li>
+        
+                        </ul>
+                    </li>
+@endcan
+
+
 
 
 @can('inventory permission')
@@ -94,12 +108,12 @@
     }
 
     a:hover {
-        background-color: #098938 !important;
+        background-color: #41b96d !important;
         color: white;
     }
 
     .active-nav {
-        background-color: #098938 !important;
+        background-color: #41b96d !important;
         color: white;
     }
 

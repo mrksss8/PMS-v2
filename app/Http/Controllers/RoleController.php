@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\RoleRequest;
 class RoleController extends Controller
 {
     /**
@@ -44,7 +45,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         
         $role = Role::create([
@@ -54,7 +55,7 @@ class RoleController extends Controller
         $role->givePermissionTo([$request->permission]);
 
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success', 'Role Added Successfuly!');
     }
 
     /**
@@ -102,6 +103,6 @@ class RoleController extends Controller
         $role = Role::findorfail($id);
         $role->delete();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('deleted', 'Role Deleted!');
     }
 }

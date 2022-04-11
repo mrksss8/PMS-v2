@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -35,13 +36,13 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
         $department = Department::create([
             'department' => $request->department
         ]);
 
-        return redirect()->route('departments.index');
+        return redirect()->route('departments.index')->with('success', 'Department Added Successfuly!');
     }
 
     /**
@@ -79,7 +80,7 @@ class DepartmentController extends Controller
             'department'=>$request->department
         ]);
         
-        return redirect()->route('departments.index');
+        return redirect()->route('departments.index')->with('updated', 'Update Success!');
     }
 
     /**
@@ -93,6 +94,6 @@ class DepartmentController extends Controller
         $department = Department::findorfail($id);
         $department->delete();
 
-        return redirect()->route('departments.index');
+        return redirect()->route('departments.index')->with('deleted', 'Department Deleted!');
     }
 }

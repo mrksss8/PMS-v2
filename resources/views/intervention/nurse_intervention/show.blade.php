@@ -15,6 +15,14 @@
             <h3 class="page__heading">Intervention</h3>
         </div>
         <div class="section-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -162,7 +170,7 @@
                                                 </div>
                                                 <div class="card-body py-0">
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12">
                                                             <div class="form-group mb-1">
                                                                 <label>Complaints:</label>
 
@@ -202,7 +210,8 @@
 
                 <form action="{{ route('nurse_intervention.store') }}" method="POST">
                     @csrf
-                    <input type="number" name = "consultation_id" value="{{$consultation->id }}" hidden>
+                    <input type="number" name="consultation_id" value="{{ $consultation->id }}" hidden>
+                    <input type="number" name="patient_id" value="{{ $consultation->patient->id }}" hidden>
                     <div class="modal-body">
                         <div class="card-body">
 
@@ -216,12 +225,12 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div> --}}
-                                            <select style="width:367px;" class="  form-control"
-                                                name="medicine">
+                                            <select style="width:367px;" class="  form-control" name="medicine">
 
                                                 @foreach ($medicines as $medicine)
+                                                <option selected disabled hidden>Choose Medicine</option>
                                                     <option value={{ $medicine->id }}>
-                                                        {{ $medicine->brand_name}} {{ $medicine->dosage}}</option>
+                                                        {{ $medicine->brand_name }} {{ $medicine->dosage }}</option>
                                                 @endforeach
                                             </select>
                                             {{-- <input type="text" name="medicine" class="form-control"> --}}
@@ -237,7 +246,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="med_qty" class="form-control" required>
+                                            <input type="text" name="med_qty" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -250,14 +259,14 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div> --}}
-                                            <select style="width:367px;" class="  form-control"
-                                            name="supply">
+                                            <select style="width:367px;" class="  form-control" name="supply">
 
-                                            @foreach ($supplies as $supply)
-                                                <option value={{ $supply->id }}>
-                                                    {{ $supply->supply}}</option>
-                                            @endforeach
-                                        </select>
+                                                @foreach ($supplies as $supply)
+                                                <option selected disabled hidden>Choose Supply</option>
+                                                    <option value={{ $supply->id }}>
+                                                        {{ $supply->supply }}</option>
+                                                @endforeach
+                                            </select>
                                             {{-- <input type="text" name="supply" class="form-control" required> --}}
                                         </div>
                                     </div>
@@ -271,7 +280,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="supply_qty" class="form-control" required>
+                                            <input type="text" name="supply_qty" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -281,8 +290,10 @@
                                         Action
                                     </p>
 
+                                    @error('action')
+                                        <p style="color:red"><small>{{ $message }}</small></p>
+                                    @enderror
                                     <div class="form-group">
-                                        <label style="color: black">Action</label>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio1" name="action" value="Clinic-Rest"
                                                 class="custom-control-input">
@@ -296,12 +307,14 @@
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio3" name="action" value="Sent-to-Emergency"
                                                 class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio3">Sent to Emergency</label>
+                                            <label class="custom-control-label" for="customRadio3">Sent to
+                                                Emergency</label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio4" name="action" value="Other-Intervention"
                                                 class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio4">Other Intervention</label>
+                                            <label class="custom-control-label" for="customRadio4">Other
+                                                Intervention</label>
                                         </div>
                                     </div>
 
@@ -339,8 +352,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="clinic_rest_approve_by" class="form-control"
-                                                                >
+                                                                <input type="text" name="clinic_rest_approve_by"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -368,8 +381,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="sent_to_home_approve_by" class="form-control"
-                                                                >
+                                                                <input type="text" name="sent_to_home_approve_by"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -378,7 +391,7 @@
                                         </div>
 
                                     </div>
-                                  
+
                                     <div class="Sent-to-Emergency box">
                                         <div class="card card-primary">
                                             <div class="card-header">
@@ -398,8 +411,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="sent_to_emer_approve_by" class="form-control"
-                                                                >
+                                                                <input type="text" name="sent_to_emer_approve_by"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -422,8 +435,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="sent_to_emer_refusal" class="form-control"
-                                                                >
+                                                                <input type="text" name="sent_to_emer_refusal"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -437,8 +450,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="sent_to_emer_refuse_witness" class="form-control"
-                                                                >
+                                                                <input type="text" name="sent_to_emer_refuse_witness"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -452,8 +465,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="sent_to_emer_refuse_waiver" class="form-control"
-                                                                >
+                                                                <input type="text" name="sent_to_emer_refuse_waiver"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -482,7 +495,8 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text" name="other_intervention_info" class="form-control">
+                                                                <input type="text" name="other_intervention_info"
+                                                                    class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -516,5 +530,11 @@
                 $(targetBox).show();
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        @if ($errors->any())
+            $('#store').modal('show');
+        @endif
     </script>
 @endsection

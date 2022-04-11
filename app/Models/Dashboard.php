@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DashboardController extends Model
 {
     use HasFactory;
+
+
+   
 }

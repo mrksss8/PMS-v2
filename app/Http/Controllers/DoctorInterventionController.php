@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Medicine;
 use App\Models\Supply;
+use App\Http\Requests\DoctorInterventionRequest;
 
 class DoctorInterventionController extends Controller
 {
@@ -38,7 +39,7 @@ class DoctorInterventionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DoctorInterventionRequest $request)
     {
          DoctorIntervention::create([
              'medicine' => $request->medicine,
@@ -57,23 +58,25 @@ class DoctorInterventionController extends Controller
              'consultation_id' => $request->consultation_id
              ]);
             
-            $medicine = Medicine::findorfail($request->medicine);
 
-            
+             if($request->medicine != null){
+            $medicine = Medicine::findorfail($request->medicine);
              $new_stock =  $medicine->beginning_stock - $request->med_qty;
 
              $medicine->beginning_stock = $new_stock;
              $medicine->save();
+             }
 
 
+             if($request->supply != null){
             $supply = Supply::findorfail($request->supply);
             $new_stock =  $supply->beginning_stock - $request->supply_qty;
 
             $supply->beginning_stock = $new_stock;
             $supply->save();
+             }
 
-
-            return redirect()->route('patients.index');
+            return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');
     }
 
 

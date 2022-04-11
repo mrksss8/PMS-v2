@@ -7,6 +7,8 @@ use App\Models\Consultation;
 use App\Models\Complaint;
 use App\Models\ReqLab;
 use Carbon\Carbon;
+use App\Http\Requests\ConsultationRequest;
+use App\Http\Requests\ConsultationSevereRequest;
 
 class ConsultationController extends Controller
 {
@@ -36,44 +38,48 @@ class ConsultationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConsultationRequest $request, ConsultationSevereRequest $request_severe)
     {   
-        if ($request->severe == 'severe'){
+    
+
+        if (in_array("severe", $request_severe->complaints)) {
 
             $consultation = Consultation::create([
+
                 //vitals-signs
-                'severe' => $request->severe,
-                'blood_pressure' => $request->blood_pressure,
-                'temperature' => $request->temperature,
-                'capillary_refill' => $request->capillary_refill,
-                'weight' => $request->weight,
-                'pulse_rate' => $request->pulse_rate,
-                'respiratory_rate' => $request->respiratory_rate,
+                'severe' => 'severe',
+                'blood_pressure' => $request_severe->blood_pressure,
+                'temperature' => $request_severe->temperature,
+                'capillary_refill' => $request_severe->capillary_refill,
+                'weight' => $request_severe->weight,
+                'pulse_rate' => $request_severe->pulse_rate,
+                'respiratory_rate' => $request_severe->respiratory_rate,
                 
                 //sign-and-symptoms
-                'onset' => $request->onset,
-                'provoke' => $request->provoke,
-                'quality' => $request->quality,
-                'severity' => $request->severity,
-                'time' => $request->time,
-                'allergies' => $request->allergies,
-                'past_medication' => $request->past_medication,
-                'last_meal' => $request->last_meal,
-                'leading_up_to_emergency' => $request->leading_up_to_emergency,
-
+                'onset' => $request_severe->onset,
+                'provoke' => $request_severe->provoke,
+                'quality' => $request_severe->quality,
+                'severity' => $request_severe->severity,
+                'time' => $request_severe->time,
+                'allergies' => $request_severe->allergies,
+                'past_medication' => $request_severe->past_medication,
+                'last_meal' => $request_severe->last_meal,
+                'leading_up_to_emergency' => $request_severe->leading_up_to_emergency,
 
                 //patient foreign key
-                'patient_id' => $request->patient_id,
+                'patient_id' => $request_severe->patient_id,
 
             ]);
             
             //insert complaints
             $consultation_id = $consultation->id;
-            $complaint = $request->complaints;
+            $complaint = $request_severe->complaints;
             
-            for($i = 0; $i<count($complaint); $i++)
-            {
-                $complaints = [
+           
+
+                for($i = 0; $i<count($complaint); $i++)
+                {
+                    $complaints = [
                     [
                         'consultation_id' =>  $consultation_id,
                         'complaint' => $complaint[$i],
@@ -82,11 +88,14 @@ class ConsultationController extends Controller
                         ]
                     ];   
                     Complaint::insert($complaints);
-            }
+                }
+            
 
-            //insert complaints
+
+
+            //insert labtest
             $consultation_id = $consultation->id;
-            $req_LabTest = $request->req_LabTest;
+            $req_LabTest = $request_severe->req_LabTest;
 
             for($i = 0; $i<count($req_LabTest); $i++)
             {
@@ -101,7 +110,7 @@ class ConsultationController extends Controller
                 ReqLab::insert($req_LabTests);
             }
 
-                return redirect()->route('dashboard.index');
+                return redirect()->route('dashboard.index')->with('success','Conslutation Added Successfully!');;
         }
 
 
@@ -123,20 +132,23 @@ class ConsultationController extends Controller
             $consultation_id = $consultation->id;
             $complaint = $request->complaints;
 
-            for($i = 0; $i<count($complaint); $i++)
-            {
+        
+
+                for($i = 0; $i<count($complaint); $i++)
+                {
                 $complaints = [
                     [
                         'consultation_id' =>  $consultation_id,
                         'complaint' => $complaint[$i],
                         'created_at'        => Carbon::now(),
                         'updated_at'        => Carbon::now(),
-                    ]
-                ];   
-                Complaint::insert($complaints);
-            }
+                        ]
+                    ];   
+                    Complaint::insert($complaints);
+                }
+            
 
-            return redirect()->route('nurse_intervention.show', $consultation->id);
+            return redirect()->route('nurse_intervention.show', $consultation->id)->with('success','Conslutation Added Successfully!');
         }   
         
     }

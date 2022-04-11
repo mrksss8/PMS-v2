@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Models\medical_history;
 use Carbon\Carbon;
+use App\Http\Requests\PatientRequest;
 
 class PatientController extends Controller
 {
@@ -36,7 +37,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
 
          $patient = Patient::create([
@@ -67,7 +68,7 @@ class PatientController extends Controller
                 medical_history::insert($medical_records);
             }
 
-        return redirect()->route('patients.index');
+        return redirect()->route('patients.index')->with('success','Patient Added Successfully!');
     }
 
     /**

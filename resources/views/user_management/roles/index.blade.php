@@ -6,11 +6,39 @@
             <h5 class="page__heading">User Management / Roles & Permission</h5>
         </div>
         <div class="section-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session()->has('updated'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('updated') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session()->has('deleted'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session()->get('deleted') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="card shadow">
                         <div class="card-header">
                             <h5 class="text-primary">Roles</h5>
+
                         </div>
                         <div class="card-body">
 
@@ -44,7 +72,8 @@
 
                                                 <td style="white-space:nowrap">
                                                     @if ($role->name == 'Admin')
-                                                        <span class="btn btn-icon icon-left mr-3 btn-outline-primary"> Cannot Take Action</span>
+                                                        <span class="btn btn-icon icon-left mr-3 btn-outline-primary">
+                                                            Cannot Take Action</span>
                                                     @else
                                                         <a href="#" class="btn btn-icon icon-left mr-3 btn-outline-primary">
                                                             <i class="far fa-edit"></i>
@@ -102,9 +131,15 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="role" class="form-control" required>
+                                            <input id="role" type="text" name="role"
+                                                class="form-control" value = "{{ old('role') }}">
                                         </div>
+                                        @error('role')
+                                            <p style="color:red"><small>{{ $message }}</small></p>
+                                        @enderror
+
                                     </div>
+
                                 </div>
 
                                 <div class="col-sm-12">
@@ -116,7 +151,8 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <select style="width:367px;" class=" select2-multiple form-control"
+                                            <select style="width:367px;" class=" select2-multiple form-control  {{ $errors->has('permission') ? ' is-invalid' : '' }}
+                                                "
                                                 name="permission[]" multiple="multiple" id="select2Multiple">
 
                                                 @foreach ($permissions as $permission)
@@ -125,6 +161,10 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @error('permission')
+                                        <p style="color:red"><small>{{ $message }}</small></p>
+                                    @enderror
+                                   
                                     </div>
                                 </div>
 
@@ -186,5 +226,11 @@
                 });
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        @if ($errors->any())
+            $('#store').modal('show');
+        @endif
     </script>
 @endsection

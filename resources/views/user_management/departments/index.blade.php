@@ -6,6 +6,42 @@
             <h5 class="page__heading">User Management / Department</h5>
         </div>
         <div class="section-body">
+
+            @if (session()->has('success'))
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+               
+            @endif
+
+            @if (session()->has('updated'))
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get('updated') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+               
+            @endif
+
+            @if (session()->has('deleted'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session()->get('deleted') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+               
+            @endif
+
+
+
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="card shadow">
@@ -26,6 +62,7 @@
                                     style="width: 95%; color:black; border: 1px solid #033571; font-weight:700;">
                                     <thead style="background-color: #033571;">
                                         <tr>
+                                            <th></th>
                                             <th style="color:white; white-space:nowrap;">Department Name</th>
                                             <th style="color:white; ">Action</th>
                                         </tr>
@@ -33,8 +70,9 @@
                                     <tbody>
                                         @foreach ($departments as $department)
                                             <tr>
+                                                <td></td>
                                                 <td>{{ $department->department }}</td>
-                                                <td style="white-space:nowrap; width:1px;">
+                                                <td>
 
                                                     {{-- <a href="#" class="btn btn-icon icon-left mr-3 btn-outline-primary">
                                                         <i class="far fa-edit"></i>
@@ -96,10 +134,15 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="department" class="form-control" required>
+                                            <input type="text" name="department" class="form-control {{ $errors->has('department') ? ' is-invalid' : '' }} " value="{{ old('department') }}"  autofocus>
                                         </div>
+                                        @error('department')
+                                            <p style="color:red"><small>{{ $message }}</small></p>
+                                        @enderror
+                                        
                                     </div>
                                 </div>
+
 
                             </div>
                         </div>
@@ -150,7 +193,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 </form>
             </div>
@@ -184,7 +227,6 @@
     </div>
 @endsection
 @section('scripts')
-
     <!-- delete script -->
     <script>
         $(document).ready(function() {
@@ -212,4 +254,9 @@
         });
     </script>
 
+    <script type="text/javascript">
+        @if ($errors->any())
+            $('#store').modal('show');
+        @endif
+    </script>
 @endsection

@@ -7,6 +7,34 @@
             <h5 class="page__heading">User Management / Users</h5>
         </div>
         <div class="section-body">
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session()->has('updated'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('updated') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session()->has('deleted'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session()->get('deleted') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow">
@@ -42,10 +70,10 @@
                                                     @endforelse
                                                 </td>
                                                 @if ($user->email == 'admin@aventus.com')
-                                                <td style="white-space:nowrap; width: 20px;">
-                                                    <span class="btn btn-icon icon-left mr-3 btn-outline-primary">Cannot
-                                                        Take Action</span>
-                                                </td>
+                                                    <td style="white-space:nowrap; width: 20px;">
+                                                        <span class="btn btn-icon icon-left mr-3 btn-outline-primary">Cannot
+                                                            Take Action</span>
+                                                    </td>
                                                 @else
                                                     <td style="white-space:nowrap; width: 20px;">
                                                         <!-- I add 20px and it fix the extra space, don't know why -->
@@ -101,7 +129,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -110,8 +138,7 @@
                                     <label for="first_name">Full Name:</label><span class="text-danger">*</span>
                                     <input id="firstName" type="text"
                                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-                                        tabindex="1" placeholder="Enter Full Name" value="{{ old('name') }}" autofocus
-                                        required>
+                                        tabindex="1" placeholder="Enter Full Name" value="{{ old('name') }}" autofocus>
                                     <div class="invalid-feedback">
                                         {{ $errors->first('name') }}
                                     </div>
@@ -166,7 +193,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="password_confirmation" class="control-label">Confirm Password:</label><span
                                         class="text-danger">*</span>
@@ -177,7 +204,7 @@
                                         {{ $errors->first('password_confirmation') }}
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>

@@ -7,6 +7,8 @@ use App\Models\Consultation;
 use App\Models\NurseIntervention;
 use App\Models\Medicine;
 use App\Models\Supply;
+use App\Http\Requests\NurseInterventionRequest;
+
 
 class NurseInterventionController extends Controller
 {
@@ -36,8 +38,9 @@ class NurseInterventionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NurseInterventionRequest $request)
     {
+
             NurseIntervention::create([
             'medicine' => $request->medicine,
             'med_qty' => $request->med_qty,
@@ -55,22 +58,25 @@ class NurseInterventionController extends Controller
             'consultation_id' => $request->consultation_id
             ]);
 
-            $medicine = Medicine::findorfail($request->medicine);
+            if($request->medicine != null){
 
-            
+                $medicine = Medicine::findorfail($request->medicine);
+                
              $new_stock =  $medicine->beginning_stock - $request->med_qty;
 
              $medicine->beginning_stock = $new_stock;
              $medicine->save();
-
-
+            }
+             
+            if($request->supply != null){
             $supply = Supply::findorfail($request->supply);
             $new_stock =  $supply->beginning_stock - $request->supply_qty;
 
             $supply->beginning_stock = $new_stock;
             $supply->save();
+            }
 
-            return redirect()->route('patients.index');
+            return redirect()->route('patients.show',$request->patient_id)->with('success','Intervention Added Successfully!');
     }
 
     /**

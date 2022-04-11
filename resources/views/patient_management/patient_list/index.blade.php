@@ -6,6 +6,14 @@
             <h3 class="page__heading">Patients List</h3>
         </div>
         <div class="section-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow">
@@ -14,12 +22,12 @@
                                 <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#store">
                                     Add Patient
                                 </button>
-                                
+
                             </div>
 
                             <div class="mt-4">
                                 <table class="table" width="100%"
-                                    style="color:black; border: 1px solid #033571; font-weight:700;" id = "myTable">
+                                    style="color:black; border: 1px solid #033571; font-weight:700;" id="myTable">
                                     <thead style="background-color: #033571;">
                                         <tr>
                                             <th style="color:white;">Full Name</th>
@@ -85,32 +93,52 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Last Name:</label>
-                                            <input type="text" class="form-control" name="last_name" tabindex="1"
-                                                placeholder="Enter Last Name" autofocus required>
+                                            <input type="text"
+                                                class="form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                                                name="last_name" tabindex="1" placeholder="Enter Last Name" autofocus>
+                                            @error('last_name')
+                                                <p style="color:red"><small>{{ $message }}</small></p>
+                                            @enderror
                                         </div>
+
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name:</label>
-                                            <input type="text" class="form-control" name="first_name" tabindex="2"
-                                                placeholder="Enter First Name" autofocus required>
+                                            <input type="text"
+                                                class="form-control {{ $errors->has('first_name') ? ' is-invalid' : '' }}"
+                                                name="first_name" tabindex="2" placeholder="Enter First Name" autofocus>
+                                            @error('first_name')
+                                                <p style="color:red"><small>{{ $message }}</small></p>
+                                            @enderror
+
+
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Middle Name:</label>
-                                            <input type="text" class="form-control" name="middle_name" tabindex="3"
-                                                placeholder="Enter Last Name" autofocus required>
+                                            <input type="text"
+                                                class="form-control {{ $errors->has('middle_name') ? ' is-invalid' : '' }}"
+                                                name="middle_name" tabindex="3" placeholder="Enter Middle Name" autofocus>
+                                            @error('middle_name')
+                                                <p style="color:red"><small>{{ $message }}</small></p>
+                                            @enderror
+
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Birthday:</label>
-                                            <input type="date" class="form-control" name="birthday" tabindex="3"
-                                                placeholder="Enter Birthday" autofocus required>
+                                            <input type="date"
+                                                class="form-control {{ $errors->has('birthday') ? ' is-invalid' : '' }}"
+                                                name="birthday" tabindex="3" placeholder="Enter Birthday" autofocus>
+                                            @error('birthday')
+                                                <p style="color:red"><small>{{ $message }}</small></p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -118,32 +146,40 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gender:</label>
-                                            <select class="form-control" name="gender" required>
+                                            <select class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender">
+                                                <option selected disabled hidden>Select Gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
+                                            @error('gender')
+                                                <p style="color:red"><small>{{ $message }}</small></p>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Department:</label>
-                                            <select class="form-control" name="department_id" required>
+                                            <select class="form-control  {{ $errors->has('department_id') ? ' is-invalid' : '' }}" name="department_id" required>
 
                                                 @php
                                                     $departments = DB::table('departments')->get();
                                                 @endphp
 
-                                                
+
                                                 <option disabled selected hidden>Select Department</option>
                                                 @forelse ($departments as $department)
-                                                    <option value="{{ $department->id }}">{{ $department->department }}
+                                                    <option value="{{ $department->id }}">
+                                                        {{ $department->department }}
                                                     </option>
                                                 @empty
                                                     <option disabled>No Departments</option>
                                                 @endforelse
 
                                             </select>
+                                            @error('department_id')
+                                            <p style="color:red"><small>{{ $message }}</small></p>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -329,7 +365,13 @@
                 responsive: true,
                 fixedColumns: true
             });
-            
+
         });
+    </script>
+
+    <script type="text/javascript">
+        @if ($errors->any())
+            $('#store').modal('show');
+        @endif
     </script>
 @endsection

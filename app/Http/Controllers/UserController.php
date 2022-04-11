@@ -7,6 +7,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -38,9 +40,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole($request->role);
+
+        return redirect()->route('users.index')->with('success', 'User Added Successfully!');
     }
 
     /**
@@ -85,7 +95,7 @@ class UserController extends Controller
         $user = User::findorfail($request->id);
         $user->assignRole($request->role);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('updated', 'Update Success!');
     }
 
     /**
@@ -99,6 +109,6 @@ class UserController extends Controller
         $user = User::findorfail($id);
         $user->delete();
         
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('deleted', 'Department Deleted!');
     }
 }

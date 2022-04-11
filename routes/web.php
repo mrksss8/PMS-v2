@@ -23,6 +23,7 @@ Route::group([ 'prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 //Users
 Route::group([ 'prefix' => 'users', 'middleware' => 'auth'], function() {
     Route::get('/index',[App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::post('/store',[App\Http\Controllers\UserController::class, 'store'])->name('users.store');
     Route::delete('/destroy/{id}',[App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
     Route::put('/update/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('users.update');   
 });

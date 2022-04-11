@@ -162,7 +162,7 @@
                                                 </div>
                                                 <div class="card-body py-0">
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12">
                                                             <div class="form-group mb-1">
                                                                 <label>Complaints:</label>
 
@@ -504,6 +504,7 @@
                                                 name="medicine">
 
                                                 @foreach ($medicines as $medicine)
+                                                <option selected disabled hidden>Choose Medicine</option>
                                                     <option value={{ $medicine->id }}>
                                                         {{ $medicine->brand_name}} {{ $medicine->dosage}}</option>
                                                 @endforeach
@@ -522,7 +523,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <input type="text" name="med_qty" class="form-control" required>
+                                            <input type="text" name="med_qty" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -540,6 +541,7 @@
                                             name="supply">
 
                                             @foreach ($supplies as $supply)
+                                            <option selected disabled hidden>Choose Supply</option>
                                                 <option value={{ $supply->id }}>
                                                     {{ $supply->supply}}</option>
                                             @endforeach
@@ -557,7 +559,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="supply_qty" class="form-control" required>
+                                            <input type="text" name="supply_qty" class="form-control">
                                         </div>
                                     </div>
                                 </div>
