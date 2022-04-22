@@ -117,6 +117,19 @@ Route::group([ 'prefix' => 'supply', 'middleware' => 'auth'], function() {
     Route::put('/update/{id}',[App\Http\Controllers\SupplyController::class, 'update'])->name('supply.update');
 });
 
+//reports
+Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
+
+
+    //top10data report
+    Route::get('top10data/index',[App\Http\Controllers\Top10reportController::class, 'index'])->name('top10data.index');
+
+
+
+    //monthly report
+    Route::get('monthlyreport/index',[App\Http\Controllers\MonthlyreportController::class, 'index'])->name('monthlyreport.index');
+  
+});
 
 
 

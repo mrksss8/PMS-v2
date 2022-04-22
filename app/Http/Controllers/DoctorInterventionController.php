@@ -6,6 +6,7 @@ use App\Models\DoctorIntervention;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Medicine;
+use App\Models\medicine_consumption;
 use App\Models\Supply;
 use App\Http\Requests\DoctorInterventionRequest;
 
@@ -41,8 +42,10 @@ class DoctorInterventionController extends Controller
      */
     public function store(DoctorInterventionRequest $request)
     {
+        $med = Medicine::findorfail($request->medicine);
+
          DoctorIntervention::create([
-             'medicine' => $request->medicine,
+             'medicine' => $med->brand_name,
              'med_qty' => $request->med_qty,
              'supply' => $request->supply,
              'supply_qty' => $request->supply_qty,
@@ -65,6 +68,11 @@ class DoctorInterventionController extends Controller
 
              $medicine->beginning_stock = $new_stock;
              $medicine->save();
+
+             medicine_consumption::create([
+                'consume' => $request->med_qty,
+                'medicine_id' => $medicine->id,
+            ]);
              }
 
 

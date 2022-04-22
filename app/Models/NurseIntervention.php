@@ -12,4 +12,9 @@ class NurseIntervention extends Model
     protected $guarded = [];
     protected $table = "nurse_interventions";
 
+
+    public function consultation(){
+
+        return $this->belongsTo(Consultation::class);
+    }
 }

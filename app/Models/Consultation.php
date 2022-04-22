@@ -52,4 +52,16 @@ class Consultation extends Model
         return $this->hasOne(DoctorIntervention::class);
     }
 
+    public function nurse_intervention(){
+
+        return $this->hasOne(NurseIntervention::class);
+    }
+
+    // public function consultation_cnt(){
+
+    //     $consultation_cnt = DB::table('consultations')->count();
+
+    //     return $consultation_cnt;  
+    // }
+
 }

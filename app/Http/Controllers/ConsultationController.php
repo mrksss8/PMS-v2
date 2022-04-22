@@ -90,8 +90,13 @@ class ConsultationController extends Controller
                     Complaint::insert($complaints);
                 }
             
+            //insert other complaints
+            $consultation = Complaint::create([
 
+                'consultation_id' => $consultation_id,
+                'other' => $request->other,
 
+            ]);
 
             //insert labtest
             $consultation_id = $consultation->id;
@@ -147,6 +152,13 @@ class ConsultationController extends Controller
                     Complaint::insert($complaints);
                 }
             
+                 //insert other complaints
+            Complaint::create([
+
+                'consultation_id' => $consultation_id,
+                'other' => $request->other,
+
+            ]);
 
             return redirect()->route('nurse_intervention.show', $consultation->id)->with('success','Conslutation Added Successfully!');
         }   

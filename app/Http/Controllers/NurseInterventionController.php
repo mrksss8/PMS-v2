@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\NurseIntervention;
 use App\Models\Medicine;
+use App\Models\medicine_consumption;
 use App\Models\Supply;
 use App\Http\Requests\NurseInterventionRequest;
 
@@ -66,6 +67,13 @@ class NurseInterventionController extends Controller
 
              $medicine->beginning_stock = $new_stock;
              $medicine->save();
+
+
+             medicine_consumption::create([
+                 'consume' => $request->med_qty,
+                 'medicine_id' => $medicine->id,
+             ]);
+
             }
              
             if($request->supply != null){
@@ -75,6 +83,8 @@ class NurseInterventionController extends Controller
             $supply->beginning_stock = $new_stock;
             $supply->save();
             }
+
+            
 
             return redirect()->route('patients.show',$request->patient_id)->with('success','Intervention Added Successfully!');
     }

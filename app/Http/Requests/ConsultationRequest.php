@@ -30,7 +30,6 @@ class ConsultationRequest extends FormRequest
             'capillary_refill' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
             'weight' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
             'pulse_rate' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-
             'complaints' => 'required'
         ];
     }

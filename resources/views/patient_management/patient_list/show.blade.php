@@ -340,6 +340,7 @@
                                                     </label>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="severe"
@@ -349,6 +350,21 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <div class="col-12 pt-2">
+
+                                                <div class="form-group">
+                                                    <label>Other Complaint/s</label>
+                                                    <input type="text"
+                                                        class="form-control  {{ $errors->has('other') ? ' is-invalid' : '' }}"
+                                                        name="other" tabindex="6" value="{{ old('other') }}"
+                                                        autofocus>
+                                                    @error('other')
+                                                        <p style="color:red"><small>{{ $message }}</small></p>
+                                                    @enderror
+                                                </div>
+                                                
+                                            </div>
+
                                         </div>
 
                                     </div>

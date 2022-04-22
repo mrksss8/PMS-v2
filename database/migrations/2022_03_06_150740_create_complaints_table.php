@@ -16,7 +16,9 @@ class CreateComplaintsTable extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
 
-            $table->string('complaint');
+            $table->string('complaint')->nullable();
+
+            $table->string('other')->nullable();
 
             //patient foreign key
             $table->unsignedBigInteger('consultation_id');

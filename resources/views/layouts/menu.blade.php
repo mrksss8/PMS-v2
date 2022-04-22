@@ -89,9 +89,9 @@
             <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571; "></i> <span style="line-height: 16px;">Daily Medication Consumption</span>
                 </a></li>
-            <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+            <li><a class="nav-link pl-5" href="{{ route('top10data.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Top 10 Data</a></li>
-            <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+            <li><a class="nav-link pl-5" href="{{ route('monthlyreport.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Monthly Report</a></li>
             <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Delivery Report</a></li>
