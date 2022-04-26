@@ -128,6 +128,14 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
 
     //monthly report
     Route::get('monthlyreport/index',[App\Http\Controllers\MonthlyreportController::class, 'index'])->name('monthlyreport.index');
+
+
+    //nurse assestment report
+    Route::get('nurse_assestment/index',[App\Http\Controllers\NurseAssestmentreportController::class, 'index'])->name('nurse_assestment_report.index');
+
+    //physician report
+    Route::get('physician_report/index',[App\Http\Controllers\PhysicianreportController::class, 'index'])->name('physician_report.index');
+    
   
 });
 

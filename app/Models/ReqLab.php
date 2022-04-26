@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ReqLab extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['lab_test','filename','path','consultation_id'];
 }

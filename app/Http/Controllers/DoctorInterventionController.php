@@ -43,11 +43,12 @@ class DoctorInterventionController extends Controller
     public function store(DoctorInterventionRequest $request)
     {
         $med = Medicine::findorfail($request->medicine);
+        $sup = Supply::findorfail($request->supply);
 
          DoctorIntervention::create([
              'medicine' => $med->brand_name,
              'med_qty' => $request->med_qty,
-             'supply' => $request->supply,
+             'supply' => $sup->supply,
              'supply_qty' => $request->supply_qty,
              'action' => $request->action,
              'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,

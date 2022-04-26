@@ -91,7 +91,7 @@ class ConsultationController extends Controller
                 }
             
             //insert other complaints
-            $consultation = Complaint::create([
+            Complaint::create([
 
                 'consultation_id' => $consultation_id,
                 'other' => $request->other,
@@ -101,6 +101,7 @@ class ConsultationController extends Controller
             //insert labtest
             $consultation_id = $consultation->id;
             $req_LabTest = $request_severe->req_LabTest;
+  
 
             for($i = 0; $i<count($req_LabTest); $i++)
             {
@@ -112,6 +113,7 @@ class ConsultationController extends Controller
                         'updated_at'        => Carbon::now(),
                     ]
                 ];   
+
                 ReqLab::insert($req_LabTests);
             }
 

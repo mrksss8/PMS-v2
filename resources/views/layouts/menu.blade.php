@@ -82,9 +82,9 @@
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"
                 style="color: #033571;"></i> <span>Reports</span></a>
         <ul class="dropdown-menu" style="display: none;">
-            <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+            <li><a class="nav-link pl-5" href="{{ route('physician_report.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Physician Report </a></li>
-            <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+            <li><a class="nav-link pl-5" href="{{ route('nurse_assestment_report.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Nurse Assessment </a></li>
             <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571; "></i> <span style="line-height: 16px;">Daily Medication Consumption</span>
