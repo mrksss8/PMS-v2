@@ -135,7 +135,9 @@
                                                             Complaints:</span>
                                                         @foreach (App\Models\Consultation::getComplaints($consultation->id) as $complaint)
                                                             <span class="text-primary" style="font-weight: 700">
+                                                                @if ($complaint->complaint != null)
                                                                 {{ $complaint->complaint }},
+                                                                @endif
                                                             </span>
                                                         @endforeach
                                                         <div class="d-flex justify-content-center mt-3">

@@ -177,8 +177,10 @@
 
                                                                 <div style="display: flex; gap:1rem;">
                                                                     @foreach ($consultation->complaints as $complaint)
-                                                                        <span
-                                                                            class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
+                                                                    @if ($complaint->complaint != null)
+                                                                    <span class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
+                                                                        
+                                                                    @endif
                                                                     @endforeach
                                                                 </div>
                                                             </div>
