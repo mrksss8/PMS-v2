@@ -5,7 +5,7 @@
 @section('report_css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/r-2.2.9/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/r-2.2.9/datatables.min.css" />
 @endsection
 
 
@@ -40,7 +40,7 @@
                                         <th style="color:white; "> Quantiy of Supply</th>
                                         <th style="color:white; "> Remarks</th>
                                         <th style="color:white; "> Intervention</th>
-                                            
+
                                         <th style="color:white; "> No. of Mins</th>
                                         <th style="color:white; "> Approve By</th>
 
@@ -60,26 +60,28 @@
                                 <tbody>
 
                                     @foreach ($c as $i)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{ \Carbon\Carbon::parse($i->created_at)->format('F d, Y')}}</td>
-                                            <td>{{ \Carbon\Carbon::parse($i->created_at)->format('H:i - (F d)')}}</td>
-                                            <td>{{ \Carbon\Carbon::parse($i->nurse_intervention->created_at)->format('H:i - (F d)')}}</td>
-                                            <td>{{ $i->patient->first_name }} {{ $i->patient->middle_name }}
-                                                {{ $i->patient->last_name }}</td>
-                                            <td>{{ $i->patient->gender }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($i->patient->birthday)->diff(\Carbon\Carbon::now())->format('%y') }}
-                                            </td>
-                                            <td>{{ $i->patient->department->department }}</td>
+                                        @if ($i->nurse_intervention != null)
+                                            <tr>
+                                                <td>1</td>
+                                                <td>{{ \Carbon\Carbon::parse($i->created_at)->format('F d, Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($i->created_at)->format('H:i - (F d)') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($i->nurse_intervention->created_at)->format('H:i - (F d)') }}
+                                                </td>
+                                                <td>{{ $i->patient->first_name }} {{ $i->patient->middle_name }}
+                                                    {{ $i->patient->last_name }}</td>
+                                                <td>{{ $i->patient->gender }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($i->patient->birthday)->diff(\Carbon\Carbon::now())->format('%y') }}
+                                                </td>
+                                                <td>{{ $i->patient->department->department }}</td>
 
-                                            <td>
-                                                @foreach ($i->complaints as $a)
-                                                    {{ $a->complaint }}
-                                                @endforeach
-                                            </td>
-                                            <td></td>
+                                                <td>
+                                                    @foreach ($i->complaints as $a)
+                                                        {{ $a->complaint }}
+                                                    @endforeach
+                                                </td>
+                                                <td></td>
 
-                                            {{-- <td>
+                                                {{-- <td>
                                                 @foreach ($i->patient_diagnosis as $a)
                                                     {{ $a->ICD_10_diagnosis }}
                                                 @endforeach
@@ -94,32 +96,32 @@
                                                 <td>{{ $i->nurse_intervention->med_qty }}</td>
                                                 <td>{{ $i->nurse_intervention->supply }}</td>
                                                 <td>{{ $i->nurse_intervention->supply_qty }}</td>
-                                            <td>
+                                                <td>
 
-                                            </td>
-                                            
-                                            {{-- <td>
+                                                </td>
+
+                                                {{-- <td>
 
                                                 @foreach ($i->patient_diagnosis as $a)
                                                 {{ $a->diagnostic_test }}
                                                 @endforeach
                                             </td> --}}
 
-                                            <td>
-                                                {{ $i->nurse_intervention->action }}
-                                            </td>
+                                                <td>
+                                                    {{ $i->nurse_intervention->action }}
+                                                </td>
 
-                                            <td>{{ $i->nurse_intervention->clinic_rest_num_of_mins }}</td>
-                                            <td>{{ $i->nurse_intervention->clinic_rest_approve_by }}</td>
+                                                <td>{{ $i->nurse_intervention->clinic_rest_num_of_mins }}</td>
+                                                <td>{{ $i->nurse_intervention->clinic_rest_approve_by }}</td>
 
-                                            <td>{{ $i->nurse_intervention->sent_to_home_approve_by }}</td>
-                                            <td>{{ $i->nurse_intervention->sent_to_emer_approve_by }}</td>
-                                            <td>{{ $i->nurse_intervention->sent_to_emer_refusal }}</td>
-                                            <td>{{ $i->nurse_intervention->sent_to_emer_refuse_witness }}</td>
-                                            <td>{{ $i->nurse_intervention->sent_to_emer_refuse_waiver }}</td>
-                                            <td>{{ $i->nurse_intervention->other_intervention_info }}</td>
-                                            
-                                            {{-- @if ($i->doctor_intervention->clinic_rest_num_of_mins != null)
+                                                <td>{{ $i->nurse_intervention->sent_to_home_approve_by }}</td>
+                                                <td>{{ $i->nurse_intervention->sent_to_emer_approve_by }}</td>
+                                                <td>{{ $i->nurse_intervention->sent_to_emer_refusal }}</td>
+                                                <td>{{ $i->nurse_intervention->sent_to_emer_refuse_witness }}</td>
+                                                <td>{{ $i->nurse_intervention->sent_to_emer_refuse_waiver }}</td>
+                                                <td>{{ $i->nurse_intervention->other_intervention_info }}</td>
+
+                                                {{-- @if ($i->doctor_intervention->clinic_rest_num_of_mins != null)
                                             
                                                 <td>{{ $i->doctor_intervention->action }}</td>
                                                 <td>{{ $i->doctor_intervention->clinic_rest_num_of_mins }}</td>
@@ -130,9 +132,10 @@
                                                 <td>{{ $i->doctor_intervention->sent_to_home_approve_by }}</td>
                                             
                                             @endif --}}
-                                          
 
-                                        </tr>
+
+                                            </tr>
+                                        @endif
                                     @endforeach
 
                                 </tbody>
@@ -152,7 +155,7 @@
 
 @section('report_JS_Script')
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
@@ -162,17 +165,17 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/r-2.2.9/datatables.min.js"></script>
 
-<script>
-    jQuery(document).ready(function($) {
-        $('#nurse_assestment').DataTable({
-            responsive:true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy',
-                'excel',
-                'print'
-            ],
+    <script>
+        jQuery(document).ready(function($) {
+            $('#nurse_assestment').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy',
+                    'excel',
+                    'print'
+                ],
+            });
         });
-    });
-</script>
+    </script>
 @endsection
