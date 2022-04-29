@@ -16,7 +16,7 @@
 
 
                                         <div class="c-header d-flex flex-wrap justify-content-center p-3 w-100">
-                                            
+
                                             <div class="c-img-part">
                                                 <div class="img-part d-flex justify-content-center">
                                                     <img src="{{ asset('img/avatar-mark.jpg') }}" class="rounded-circle"
@@ -30,7 +30,7 @@
                                             </div>
                                         </div>
 
-                                        
+
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="card ">
@@ -280,14 +280,14 @@
                                     </div>
 
                                     @error('complaints')
-                                                        <p style="color:red"><small>{{ $message }}</small></p>
+                                        <p style="color:red"><small>{{ $message }}</small></p>
                                     @enderror
                                     <div class="card-body p-0">
                                         <div class="row px-3">
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Tooth Ache">
+                                                        value="Tooth Ache" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Tooth Ache
                                                     </label>
@@ -296,7 +296,7 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Low Grade Fever">
+                                                        value="Low Grade Fever" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Low Grade Fever
                                                     </label>
@@ -306,7 +306,7 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Body Pain">
+                                                        value="Body Pain" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Body Pain
                                                     </label>
@@ -315,7 +315,7 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="LBM">
+                                                        value="LBM" {{ in_array('LBM', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         LBM
                                                     </label>
@@ -325,7 +325,7 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Cut">
+                                                        value="Cut" {{ in_array('Cut', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Cut
                                                     </label>
@@ -334,17 +334,27 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Wounds">
+                                                        value="Wounds" {{ in_array('Wounds', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Wound
                                                     </label>
                                                 </div>
                                             </div>
-
-                                            <div class="col-12 pt-2">
+                                            
+                                            <div class="col-6 pt-2 mt-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="other"
+                                                        name="complaints[]" value="other" {{ in_array('other', old('complaints', [])) ? 'checked' : '' }}>
+                                                    <label class="form-check-label">
+                                                        Other
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-6 pt-2 mt-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="severe"
-                                                        name="complaints[]" value="severe">
+                                                        name="complaints[]" value="severe" {{ in_array('severe', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Severe
                                                     </label>
@@ -352,17 +362,16 @@
                                             </div>
                                             <div class="col-12 pt-2">
 
-                                                <div class="form-group">
+                                                <div class="form-group" id = "other-complaint">
                                                     <label>Other Complaint/s</label>
                                                     <input type="text"
                                                         class="form-control  {{ $errors->has('other') ? ' is-invalid' : '' }}"
-                                                        name="other" tabindex="6" value="{{ old('other') }}"
-                                                        autofocus>
+                                                        name="other" tabindex="6" value="{{ old('other') }}" autofocus>
                                                     @error('other')
                                                         <p style="color:red"><small>{{ $message }}</small></p>
                                                     @enderror
                                                 </div>
-                                                
+
                                             </div>
 
                                         </div>
@@ -387,8 +396,9 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Onset</label>
-                                                <input type="text" class="form-control {{ $errors->has('onset') ? ' is-invalid' : '' }}" name="onset" tabindex="7"
-                                                    value="{{ old('onset') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('onset') ? ' is-invalid' : '' }}"
+                                                    name="onset" tabindex="7" value="{{ old('onset') }}" autofocus>
                                                 @error('onset')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -399,8 +409,9 @@
                                             <div class="form-group">
                                                 <label>location</label>
                                                 <!-- provoke -->
-                                                <input type="text" class="form-control {{ $errors->has('provoke') ? ' is-invalid' : '' }}" name="provoke" tabindex="8"
-                                                    value="{{ old('provoke') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('provoke') ? ' is-invalid' : '' }}"
+                                                    name="provoke" tabindex="8" value="{{ old('provoke') }}" autofocus>
                                                 @error('provoke')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -411,8 +422,9 @@
                                             <div class="form-group">
                                                 <label>duration</label>
                                                 <!-- quality -->
-                                                <input type="text" class="form-control {{ $errors->has('quality') ? ' is-invalid' : '' }}" name="quality" tabindex="9"
-                                                    value="{{ old('quality') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('quality') ? ' is-invalid' : '' }}"
+                                                    name="quality" tabindex="9" value="{{ old('quality') }}" autofocus>
                                                 @error('quality')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -420,12 +432,13 @@
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div
-                                                class="form-group">
+                                            <div class="form-group">
                                                 <label for="">Character Aggravating Factors</label>
                                                 {{-- <label>Severity</label> --}}
-                                                <input type="text" class="form-control {{ $errors->has('severity') ? ' is-invalid' : '' }}" name="severity" tabindex="10"
-                                                    value="{{ old('severity') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('severity') ? ' is-invalid' : '' }}"
+                                                    name="severity" tabindex="10" value="{{ old('severity') }}"
+                                                    autofocus>
                                                 @error('severity')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -433,12 +446,13 @@
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div
-                                                class="form-group">
+                                            <div class="form-group">
                                                 <label for="">Radiation</label>
                                                 {{-- <label>Last Meal</label> --}}
-                                                <input type="text" class="form-control  {{ $errors->has('last_meal') ? ' is-invalid' : '' }}" name="last_meal" tabindex="14"
-                                                    value="{{ old('last_meal') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control  {{ $errors->has('last_meal') ? ' is-invalid' : '' }}"
+                                                    name="last_meal" tabindex="14" value="{{ old('last_meal') }}"
+                                                    autofocus>
                                                 @error('last_meal')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -448,8 +462,9 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Time Severity</label>
-                                                <input type="text" class="form-control {{ $errors->has('time') ? ' is-invalid' : '' }}" name="time" tabindex="11"
-                                                    value="{{ old('time') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('time') ? ' is-invalid' : '' }}"
+                                                    name="time" tabindex="11" value="{{ old('time') }}" autofocus>
                                                 @error('time')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -457,22 +472,24 @@
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div
-                                                class="form-group">
+                                            <div class="form-group">
                                                 <label>Allergies</label>
-                                                <input type="text" class="form-control {{ $errors->has('allergies') ? ' is-invalid' : '' }}" name="allergies" tabindex="12"
-                                                    value="{{ old('allergies') }}" autofocus> @error('allergies')
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('allergies') ? ' is-invalid' : '' }}"
+                                                    name="allergies" tabindex="12" value="{{ old('allergies') }}"
+                                                    autofocus> @error('allergies')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-md-3">
-                                            <div
-                                                class="form-group">
+                                            <div class="form-group">
                                                 <label>Past Medications</label>
-                                                <input type="text" class="form-control {{ $errors->has('past_medications') ? ' is-invalid' : '' }}" name="past_medications"
-                                                    tabindex="13" value="{{ old('past_medications') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('past_medications') ? ' is-invalid' : '' }}"
+                                                    name="past_medications" tabindex="13"
+                                                    value="{{ old('past_medications') }}" autofocus>
                                                 @error('past_medications')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -483,11 +500,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <div
-                                                class="form-group">
+                                            <div class="form-group">
                                                 <label>Events leading up to emergency</label>
-                                                <input type="text" class="form-control {{ $errors->has('past_medications') ? ' is-invalid' : '' }}" name="leading_up_to_emergency"
-                                                    tabindex="15" value="{{ old('leading_up_to_emergency') }}" autofocus>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('past_medications') ? ' is-invalid' : '' }}"
+                                                    name="leading_up_to_emergency" tabindex="15"
+                                                    value="{{ old('leading_up_to_emergency') }}" autofocus>
                                                 @error('leading_up_to_emergency')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -512,7 +530,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="CBC">
+                                                    value="CBC" {{ in_array('CBC', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     CBC
                                                 </label>
@@ -521,7 +539,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Xray">
+                                                    value="Xray" {{ in_array('Xray', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Xray
                                                 </label>
@@ -531,7 +549,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="DrugTest">
+                                                    value="DrugTest" {{ in_array('DrugTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Drug Test
                                                 </label>
@@ -540,7 +558,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Fecalysist">
+                                                    value="Fecalysist" {{ in_array('Fecalysist', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Fecalysis
                                                 </label>
@@ -550,7 +568,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Urinalysis">
+                                                    value="Urinalysis" {{ in_array('Urinalysis', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Urinalysis
                                                 </label>
@@ -559,7 +577,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="RT-PCRTest">
+                                                    value="RT-PCRTest" {{ in_array('RT-PCRTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     RT-PCR Test
                                                 </label>
@@ -568,7 +586,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="AntigenTest">
+                                                    value="AntigenTest" {{ in_array('AntigenTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Antigen Test
                                                 </label>
@@ -577,7 +595,7 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="CT-scan">
+                                                    value="CT-scan" {{ in_array('CT-scan', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     CT-scan
                                                 </label>
@@ -589,7 +607,7 @@
                                             <div class="form-group">
                                                 <label>Other/s, pls specify </label>
                                                 <input type="text" class="form-control" name="req_LabTest[]"
-                                                    tabindex="15" autofocus>
+                                                    tabindex="15"  autofocus>
                                             </div>
                                         </div>
                                     </div>
@@ -597,10 +615,11 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-group">
                                                 <label>Requested By </label>
-                                                <input type="text" class="form-control  {{ $errors->has('requested_by') ? ' is-invalid' : '' }}" name="requested_by" tabindex="15"
-                                                value="{{ old('requested_by') }}"
+                                                <input type="text"
+                                                    class="form-control  {{ $errors->has('requested_by') ? ' is-invalid' : '' }}"
+                                                    name="requested_by" tabindex="15" value="{{ old('requested_by') }}"
                                                     autofocus>
-                                                    @error('requested_by')
+                                                @error('requested_by')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
@@ -609,9 +628,11 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-group">
                                                 <label>License Number</label>
-                                                <input type="text" class="form-control  {{ $errors->has('license_number') ? ' is-invalid' : '' }}" name="license_number"
-                                                    tabindex="15" value="{{ old('license_number') }}" autofocus>
-                                                    
+                                                <input type="text"
+                                                    class="form-control  {{ $errors->has('license_number') ? ' is-invalid' : '' }}"
+                                                    name="license_number" tabindex="15"
+                                                    value="{{ old('license_number') }}" autofocus>
+
                                                 @error('license_number')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
@@ -656,9 +677,28 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $("#other").click(function() {
+                if ($(this).is(":checked")) {
+                    $("#other-complaint").show();
+                } else {
+                    $("#other-complaint").hide();
+
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#other-complaint").hide();
+        });
+    </script>
+
 
     <script type="text/javascript">
-        @if ($errors->any())        
+        @if ($errors->any())
             $('#store').modal('show');
         @endif
     </script>

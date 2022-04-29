@@ -24,13 +24,12 @@ class ConsultationRequest extends FormRequest
     public function rules()
     {
         return [
-            'blood_pressure' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'temperature' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'respiratory_rate' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'capillary_refill' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'weight' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'pulse_rate' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            'complaints' => 'required'
+            'blood_pressure' => 'required|min:2,',
+            'temperature' => 'required|min:2,',
+            'respiratory_rate' => 'required|min:2,',
+            'capillary_refill' => 'required|min:2,',
+            'weight' => 'required|min:2,',
+            'pulse_rate' => 'required|min:2,',
         ];
     }
 }

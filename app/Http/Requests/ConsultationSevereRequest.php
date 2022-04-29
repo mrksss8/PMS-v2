@@ -24,18 +24,19 @@ class ConsultationSevereRequest extends FormRequest
     public function rules()
     {
         return [
-            //  'onset' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'provoke' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'quality' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'severity' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'last_meal' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'time' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'allergies' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'past_medications' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'leading_up_to_emergency' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
 
-            //  'requested_by' => 'required|regex:/^[a-zA-Z ]+$/u|min:2,',
-            //  'license_number' => 'required|min:5,',
+              'onset' => 'required|min:2,',
+              'provoke' => 'required|min:2,',
+              'quality' => 'required|min:2,',
+              'severity' => 'required|min:2,',
+              'last_meal' => 'required|min:2,',
+              'time' => 'required|min:2,',
+              'allergies' => 'required|min:2,',
+              'past_medications' => 'required|min:2,',
+              'leading_up_to_emergency' => 'required|min:2,',
+              'requested_by' => 'required|min:2,',
+              'license_number' => 'required|min:5,',
+
          ];
     }
 }
