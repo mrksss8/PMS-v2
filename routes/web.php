@@ -125,7 +125,6 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
     Route::get('top10data/index',[App\Http\Controllers\Top10reportController::class, 'index'])->name('top10data.index');
 
 
-
     //monthly report
     Route::get('monthlyreport/index',[App\Http\Controllers\MonthlyreportController::class, 'index'])->name('monthlyreport.index');
 
@@ -133,11 +132,14 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
     //nurse assestment report
     Route::get('nurse_assestment/index',[App\Http\Controllers\NurseAssestmentreportController::class, 'index'])->name('nurse_assestment_report.index');
 
+
     //physician report
     Route::get('physician_report/index',[App\Http\Controllers\PhysicianreportController::class, 'index'])->name('physician_report.index');
     Route::post('physician_report/search',[App\Http\Controllers\PhysicianreportController::class, 'search'])->name('physician_report.search');
     
-  
+    
+    //daily_medication_consumption_report
+    Route::get('daily_medication_consumption/index',[App\Http\Controllers\DailyMedicationConsumptionreportController::class, 'index'])->name('daily_medication_report.index');
 });
 
 

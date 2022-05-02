@@ -12,5 +12,8 @@ class DoctorIntervention extends Model
     protected $guarded = [];
     use HasFactory;
 
- 
+    public function consultation(){
+
+        return $this->belongsTo(Consultation::class);
+    }
 }

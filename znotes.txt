@@ -29,6 +29,9 @@ kung sino ang may foreign key, sya ang lalagyan mo kung sino ang belong na class
 ****
 
 
+***create view is use by top 10 medicine and daily medication report by dept
+
+
 
 
 //todo
