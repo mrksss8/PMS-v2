@@ -16,10 +16,38 @@
         </div>
         <div class="section-body">
             <div class="row">
+
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body shadow">
                             <h5 class="text-center mb-3" style="color:black;">Physician Report</h5>
+                            <div class="card-body">
+                                <form action="{{ route('physician_report.search') }}" method = "POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group d-flex align-items-center justify-content-center">
+                                                <label style="color: black">Search From</label>
+                                                <div class="ml-2">
+                                                    <input type="date" name="search_from" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group d-flex align-items-center">
+                                                <label style="color: black">Search to</label>
+                                                <div class="ml-2">
+                                                    <input type="date" name="search_to" class="form-control w-100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                                <button type="submit" class="btn btn-sm btn-success mt-2 px-3" >Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <table class="table mt-4" id="physician_report"
                                 style="color:black; border: 1px solid #033571; font-weight 600;">
                                 <thead style="background-color: #033571;">
@@ -62,7 +90,7 @@
                                         <th style="color:white;"> Sent to emergency Refuse witness (if refused): </th>
 
                                         <th style="color:white;"> Other Info Action: </th>
-                                        
+
                                         <th style="color:white;"> Medical Certificate Status: </th>
                                         <th style="color:white;"> Fit to Work: </th>
                                         <th style="color:white;"> FTW Date: </th>

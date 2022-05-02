@@ -135,6 +135,7 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
 
     //physician report
     Route::get('physician_report/index',[App\Http\Controllers\PhysicianreportController::class, 'index'])->name('physician_report.index');
+    Route::post('physician_report/search',[App\Http\Controllers\PhysicianreportController::class, 'search'])->name('physician_report.search');
     
   
 });
