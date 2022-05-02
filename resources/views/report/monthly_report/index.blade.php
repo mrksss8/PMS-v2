@@ -194,7 +194,7 @@ Complaints Report
                                                 {{ $data->department}}
                                         </td>
                                         <td>
-                                            {{ $data->total_medicine}} pcs
+                                            {{ $data->Total_medicine}} pcs
                                            </td>
                                        </tr>
                                    @endforeach
