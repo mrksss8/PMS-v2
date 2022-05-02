@@ -140,6 +140,10 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
     
     //daily_medication_consumption_report
     Route::get('daily_medication_consumption/index',[App\Http\Controllers\DailyMedicationConsumptionreportController::class, 'index'])->name('daily_medication_report.index');
+
+
+    //deliveryreport_report
+    Route::get('delivery_report/index',[App\Http\Controllers\MedicineDeliveryreportController::class, 'index'])->name('delivery_report.index');
 });
 
 

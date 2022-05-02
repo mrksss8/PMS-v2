@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DoctorIntervention;
 use App\Models\Patient;
 use App\Models\Department;
+use DB;
 
 class DailyMedicationConsumptionreportController extends Controller
 {
@@ -17,8 +18,10 @@ class DailyMedicationConsumptionreportController extends Controller
           return $query->distinct();
         })->get();
         
-        dd($consume_meds_by_dept);
+
+        $medicine_consume_by_dept = DB::table('medicine_consumed_by_dept')
+        ->get();
     
-        return view('report.daily_medication_consumption.index',compact('consume_meds'));
+        return view('report.daily_medication_consumption.index',compact('consume_meds','medicine_consume_by_dept'));
     }
 }

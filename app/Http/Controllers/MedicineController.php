@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicine;
+use App\Models\Medicine_delivery;
+
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
@@ -51,6 +53,8 @@ class MedicineController extends Controller
             
         ]);
 
+        
+
         return redirect()->back();
     }
 
@@ -92,6 +96,12 @@ class MedicineController extends Controller
 
         $medicine->beginning_stock = $new_stock;
         $medicine->save();
+
+
+        $medicine_delivery = new Medicine_delivery;
+        $medicine_delivery->medicine_id = $medicine->id;
+        $medicine_delivery->med_quantity = $request->stock;
+        $medicine_delivery->save();
         
         return redirect()->back();
     }

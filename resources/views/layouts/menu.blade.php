@@ -93,7 +93,7 @@
                         style="color: #033571;"></i>Top 10 Data</a></li>
             <li><a class="nav-link pl-5" href="{{ route('monthlyreport.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Monthly Report</a></li>
-            <li><a class="nav-link pl-5" href="" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
+            <li><a class="nav-link pl-5" href="{{ route('delivery_report.index') }}" style="color: #033571; font-weight:600;"><i class=" fas fa-building icon"
                         style="color: #033571;"></i>Delivery Report</a></li>
         </ul>
     </li>
