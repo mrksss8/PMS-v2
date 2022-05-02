@@ -61,7 +61,7 @@ class MonthlyreportController extends Controller
         ->get();
 
 
-        $medicine_consume_by_dept = DB::table('medicine_consume_by_dept')
+        $medicine_consume_by_dept = DB::table('medicine_consumed_by_dept')
         ->get();
         
 
