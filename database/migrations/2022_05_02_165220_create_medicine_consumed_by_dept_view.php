@@ -34,7 +34,7 @@ class CreateMedicineConsumedByDeptView extends Migration
     private function createView(): string
     {
         return <<<SQL
-            CREATE VIEW medicine_consumed_by_dept AS
+            CREATE OR REPLACE VIEW medicine_consumed_by_dept AS
                 -- SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
                 SELECT patients.last_name, patients.first_name, patients.middle_name, departments.department, doctor_interventions.medicine, doctor_interventions.med_qty, SUM(doctor_interventions.med_qty) AS Total_medicine
                 FROM patients
@@ -55,7 +55,7 @@ class CreateMedicineConsumedByDeptView extends Migration
     {
         return <<<SQL
 
-            DROP VIEW IF EXISTS `medicine_consumed_by_dept`;
+            DROP VIEW `medicine_consumed_by_dept`;
             SQL;
     }
 }
