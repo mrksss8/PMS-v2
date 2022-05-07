@@ -22,7 +22,7 @@
                         <div class="card-body shadow">
                             <h5 class="text-center mb-3" style="color:black;">Delivery Report</h5>
 
-                            <table class="table mt-4" id="medication_by_patient"
+                            <table class="table mt-4" id="medicine_delivery"
                                 style="color:black; border: 1px solid #033571; font-weight 600;">
                                 <thead style="background-color: #033571;">
                                     <tr>
@@ -54,6 +54,42 @@
                     </div>
                 </div>
 
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body shadow">
+                            <h5 class="text-center mb-3" style="color:black;">Supplies Delivery Report</h5>
+
+                            <table class="table mt-4" id="supply_delivery"
+                                style="color:black; border: 1px solid #033571; font-weight 600;">
+                                <thead style="background-color: #033571;">
+                                    <tr>
+
+                                        <th style="color:white;"> No. </th>
+                                        <th style="color:white;"> Supply Name: </th>
+                                        <th style="color:white;"> Quantity: </th>
+                                        <th style="color:white;"> Date: </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($supply_deliveries as $delivery)
+                                        <tr>
+                                            <td></td>
+                                            <td>{{ $delivery->supply->supply }}</td>
+                                            <td>{{ $delivery->supply_quantity }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('F d, Y') }}</td>
+                                        </tr>
+                                    @endforeach
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
 
 
             </div>
@@ -77,7 +113,7 @@
 
     <script>
         jQuery(document).ready(function($) {
-            $('#medication_by_patient').DataTable({
+            $('#medicine_delivery').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
                 buttons: [
@@ -90,7 +126,7 @@
     </script>
     <script>
         jQuery(document).ready(function($) {
-            $('#medication_by_dept').DataTable({
+            $('#supply_delivery').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
                 buttons: [
@@ -101,4 +137,6 @@
             });
         });
     </script>
+
+
 @endsection

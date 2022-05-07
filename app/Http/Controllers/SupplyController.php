@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supply;
 use Illuminate\Http\Request;
+use App\Models\Supplies_delivery;
 
 class SupplyController extends Controller
 {
@@ -85,6 +86,11 @@ class SupplyController extends Controller
 
         $supply->beginning_stock = $new_stock;
         $supply->save();
+
+        $supply_delivery = new Supplies_delivery;
+        $supply_delivery->supply_id = $supply->id;
+        $supply_delivery->supply_quantity = $request->stock;
+        $supply_delivery->save();
 
         return redirect()->back();
     }

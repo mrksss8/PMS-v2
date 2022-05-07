@@ -143,7 +143,7 @@ Route::group([ 'prefix' => 'Reports', 'middleware' => 'auth'], function() {
 
 
     //deliveryreport_report
-    Route::get('delivery_report/index',[App\Http\Controllers\MedicineDeliveryreportController::class, 'index'])->name('delivery_report.index');
+    Route::get('delivery_report/index',[App\Http\Controllers\MedicineSupplyDeliveryreportController::class, 'index'])->name('delivery_report.index');
 });
 
 
