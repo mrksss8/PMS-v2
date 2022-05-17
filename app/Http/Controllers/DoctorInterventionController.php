@@ -42,10 +42,17 @@ class DoctorInterventionController extends Controller
      */
     public function store(DoctorInterventionRequest $request)
     {
+        if($request->supply != null){
         $med = Medicine::findorfail($request->medicine);
-        $sup = Supply::findorfail($request->supply);
+        }
 
-         DoctorIntervention::create([
+        if($request->medicine != null){
+        $sup = Supply::findorfail($request->supply);
+        }
+
+        if(($med->beginning_stock >= $request->med_qty) || ($sup->beginning_stock >= $request->supply_qty)){
+        
+            DoctorIntervention::create([
              'medicine' => $med->brand_name,
              'med_qty' => $request->med_qty,
              'supply' => $sup->supply,
@@ -64,29 +71,36 @@ class DoctorInterventionController extends Controller
             
 
              if($request->medicine != null){
-            $medicine = Medicine::findorfail($request->medicine);
-             $new_stock =  $medicine->beginning_stock - $request->med_qty;
+          
+                $new_stock =  $med->beginning_stock - $request->med_qty;
+                $med->beginning_stock = $new_stock;
+                $med->save();
 
-             $medicine->beginning_stock = $new_stock;
-             $medicine->save();
-
-             medicine_consumption::create([
-                'consume' => $request->med_qty,
-                'medicine_id' => $medicine->id,
-            ]);
+                medicine_consumption::create([
+                    'consume' => $request->med_qty,
+                    'medicine_id' => $med->id,
+                ]);
              }
 
 
              if($request->supply != null){
-            $supply = Supply::findorfail($request->supply);
-            $new_stock =  $supply->beginning_stock - $request->supply_qty;
+          
+                $new_stock =  $sup->beginning_stock - $request->supply_qty;
+                $sup->beginning_stock = $new_stock;
+                $sup->save();
 
-            $supply->beginning_stock = $new_stock;
-            $supply->save();
              }
 
             return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');
-    }
+
+        } 
+        else{
+
+            return redirect()->route('dashboard.index')->with('success','Medicine or Supply exceed of Stock!');
+
+        }
+}
+
 
 
     /**
