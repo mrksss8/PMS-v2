@@ -42,21 +42,86 @@ class DoctorInterventionController extends Controller
      */
     public function store(DoctorInterventionRequest $request)
     {
-        if($request->supply != null){
-        $med = Medicine::findorfail($request->medicine);
+
+        if($request->medicine != null){     
+            $med = Medicine::findorfail($request->medicine);
+
+            if ($med->beginning_stock >= $request->med_qty){
+
+                $new_stock =  $med->beginning_stock - $request->med_qty;
+                $med->beginning_stock = $new_stock;
+                $med->save();
+                
+                medicine_consumption::create([
+                    'consume' => $request->med_qty,
+                    'medicine_id' => $med->id,
+                ]);
+            
+                DoctorIntervention::create([
+                 'medicine' => $med->brand_name,
+                 'med_qty' => $request->med_qty,
+                //  'supply' => $sup->supply,
+                //  'supply_qty' => $request->supply_qty,
+                 'action' => $request->action,
+                 'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+                 'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+                 'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+                 'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+                 'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+                 'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+                 'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+                 'other_intervention_info' => $request->other_intervention_info,
+                 'consultation_id' => $request->consultation_id
+                 ]);
+             
+                return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');  
+
+            }
+            else{
+                return redirect()->route('dashboard.index')->with('success','Medicine exceed from Stock!');  
+            }
         }
 
-        if($request->medicine != null){
-        $sup = Supply::findorfail($request->supply);
+        if($request->supply != null){   
+
+            $sup = Supply::findorfail($request->supply);
+
+            if ($sup->beginning_stock >= $request->supply_qty){
+
+                $new_stock =  $sup->beginning_stock - $request->supply_qty;
+                $sup->beginning_stock = $new_stock;
+                $sup->save();
+                
+                DoctorIntervention::create([
+                //  'medicine' => $med->brand_name,
+                //  'med_qty' => $request->med_qty,
+                 'supply' => $sup->supply,
+                 'supply_qty' => $request->supply_qty,
+                 'action' => $request->action,
+                 'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+                 'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+                 'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+                 'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+                 'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+                 'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+                 'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+                 'other_intervention_info' => $request->other_intervention_info,
+                 'consultation_id' => $request->consultation_id
+                 ]);
+             
+                return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');  
+
+            }
+            else{
+                return redirect()->route('dashboard.index')->with('success','Supply exceed from Stock!');  
+            }
         }
 
-        if(($med->beginning_stock >= $request->med_qty) || ($sup->beginning_stock >= $request->supply_qty)){
-        
-            DoctorIntervention::create([
-             'medicine' => $med->brand_name,
-             'med_qty' => $request->med_qty,
-             'supply' => $sup->supply,
-             'supply_qty' => $request->supply_qty,
+        DoctorIntervention::create([
+            //  'medicine' => $med->brand_name,
+            //  'med_qty' => $request->med_qty,
+            //  'supply' => $sup->supply,
+            //  'supply_qty' => $request->supply_qty,
              'action' => $request->action,
              'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
              'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
@@ -68,39 +133,40 @@ class DoctorInterventionController extends Controller
              'other_intervention_info' => $request->other_intervention_info,
              'consultation_id' => $request->consultation_id
              ]);
-            
-
-             if($request->medicine != null){
-          
-                $new_stock =  $med->beginning_stock - $request->med_qty;
-                $med->beginning_stock = $new_stock;
-                $med->save();
-
-                medicine_consumption::create([
-                    'consume' => $request->med_qty,
-                    'medicine_id' => $med->id,
-                ]);
-             }
+         
+            return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');  
 
 
-             if($request->supply != null){
-          
-                $new_stock =  $sup->beginning_stock - $request->supply_qty;
-                $sup->beginning_stock = $new_stock;
-                $sup->save();
 
-             }
 
-            return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');
+        // if($request->supply != null){      
 
-        } 
-        else{
+        // $sup = Supply::findorfail($request->supply);
+        // $new_stock =  $sup->beginning_stock - $request->supply_qty;
+        // $sup->beginning_stock = $new_stock;
+        // $sup->save();
 
-            return redirect()->route('dashboard.index')->with('success','Medicine or Supply exceed of Stock!');
+        // DoctorIntervention::create([
+        //     'medicine' => $med->brand_name,
+        //     'med_qty' => $request->med_qty,
+        //     'supply' => $sup->supply,
+        //     'supply_qty' => $request->supply_qty,
+        //     'action' => $request->action,
+        //     'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+        //     'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+        //     'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+        //     'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+        //     'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+        //     'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+        //     'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+        //     'other_intervention_info' => $request->other_intervention_info,
+        //     'consultation_id' => $request->consultation_id
+        //     ]);
+   
+        //    return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');   
 
-        }
-}
-
+        // }
+    }
 
 
     /**

@@ -15,10 +15,10 @@ class CreateDoctorInterventionsTable extends Migration
     {
         Schema::create('doctor_interventions', function (Blueprint $table) {
             $table->id();
-            $table->string('medicine');
-            $table->integer('med_qty');
-            $table->string('supply');
-            $table->integer('supply_qty');
+            $table->string('medicine')->nullable();
+            $table->integer('med_qty')->nullable();
+            $table->string('supply')->nullable();
+            $table->integer('supply_qty')->nullable();
             $table->string('action');
             $table->integer('clinic_rest_num_of_mins')->nullable();
             $table->string('clinic_rest_approve_by')->nullable();
