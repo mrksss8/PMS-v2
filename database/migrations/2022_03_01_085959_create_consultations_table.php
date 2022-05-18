@@ -1,5 +1,5 @@
-<?php
 
+<?php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,14 +30,13 @@ class CreateConsultationsTable extends Migration
 
             //sign and Symptoms
             $table->string('onset')->nullable();
-            $table->string('provoke')->nullable();
-            $table->string('quality')->nullable();
-            $table->string('severity')->nullable();
+            $table->string('location')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('character')->nullable();
+            $table->string('aggravating_factor')->nullable();
+            $table->string('radiation')->nullable();
             $table->string('time')->nullable();
-            $table->string('allergies')->nullable();
-            $table->string('past_medication')->nullable();
-            $table->string('last_meal')->nullable();
-            $table->string('leading_up_to_emergency')->nullable();
+            $table->string('severity')->nullable();
 
             //patient foreign key
             $table->unsignedBigInteger('patient_id');

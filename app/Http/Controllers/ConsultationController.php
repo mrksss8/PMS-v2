@@ -40,7 +40,6 @@ class ConsultationController extends Controller
      */
     public function store(ConsultationRequest $request, ConsultationSevereRequest $request_severe)
     {   
-    
 
         if (in_array("severe", $request_severe->complaints)) {
 
@@ -57,14 +56,13 @@ class ConsultationController extends Controller
                 
                 //sign-and-symptoms
                 'onset' => $request_severe->onset,
-                'provoke' => $request_severe->provoke,
-                'quality' => $request_severe->quality,
-                'severity' => $request_severe->severity,
+                'location' => $request_severe->location,
+                'duration' => $request_severe->duration,
+                'character' => $request_severe->character,
+                'aggravating_factor' => $request_severe->aggravating_factor,
+                'radiation' => $request_severe->radiation,
                 'time' => $request_severe->time,
-                'allergies' => $request_severe->allergies,
-                'past_medication' => $request_severe->past_medication,
-                'last_meal' => $request_severe->last_meal,
-                'leading_up_to_emergency' => $request_severe->leading_up_to_emergency,
+                'severity' => $request_severe->severity,
 
                 //patient foreign key
                 'patient_id' => $request_severe->patient_id,

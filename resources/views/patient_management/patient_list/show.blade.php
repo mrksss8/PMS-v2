@@ -409,12 +409,12 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>location</label>
+                                                <label>Location</label>
                                                 <!-- provoke -->
                                                 <input type="text"
-                                                    class="form-control {{ $errors->has('provoke') ? ' is-invalid' : '' }}"
-                                                    name="provoke" tabindex="8" value="{{ old('provoke') }}" autofocus>
-                                                @error('provoke')
+                                                    class="form-control {{ $errors->has('location') ? ' is-invalid' : '' }}"
+                                                    name="location" tabindex="8" value="{{ old('location') }}" autofocus>
+                                                @error('location')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
@@ -422,12 +422,12 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>duration</label>
+                                                <label>Duration</label>
                                                 <!-- quality -->
                                                 <input type="text"
-                                                    class="form-control {{ $errors->has('quality') ? ' is-invalid' : '' }}"
-                                                    name="quality" tabindex="9" value="{{ old('quality') }}" autofocus>
-                                                @error('quality')
+                                                    class="form-control {{ $errors->has('duration') ? ' is-invalid' : '' }}"
+                                                    name="duration" tabindex="9" value="{{ old('duration') }}" autofocus>
+                                                @error('duration')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
@@ -435,13 +435,26 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="">Character Aggravating Factors</label>
+                                                <label for="">Character</label>
                                                 {{-- <label>Severity</label> --}}
                                                 <input type="text"
-                                                    class="form-control {{ $errors->has('severity') ? ' is-invalid' : '' }}"
-                                                    name="severity" tabindex="10" value="{{ old('severity') }}"
+                                                    class="form-control {{ $errors->has('character') ? ' is-invalid' : '' }}"
+                                                    name="character" tabindex="10" value="{{ old('character') }}"
                                                     autofocus>
-                                                @error('severity')
+                                                @error('character')
+                                                    <p style="color:red"><small>{{ $message }}</small></p>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Aggravating Factors</label>
+                                                <input type="text"
+                                                    class="form-control {{ $errors->has('aggravating_factor') ? ' is-invalid' : '' }}"
+                                                    name="aggravating_factor" tabindex="15"
+                                                    value="{{ old('aggravating_factor') }}" autofocus>
+                                                @error('aggravating_factor')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
@@ -452,10 +465,10 @@
                                                 <label for="">Radiation</label>
                                                 {{-- <label>Last Meal</label> --}}
                                                 <input type="text"
-                                                    class="form-control  {{ $errors->has('last_meal') ? ' is-invalid' : '' }}"
-                                                    name="last_meal" tabindex="14" value="{{ old('last_meal') }}"
+                                                    class="form-control  {{ $errors->has('radiation') ? ' is-invalid' : '' }}"
+                                                    name="radiation" tabindex="14" value="{{ old('radiation') }}"
                                                     autofocus>
-                                                @error('last_meal')
+                                                @error('radiation')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
@@ -463,7 +476,7 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Time Severity</label>
+                                                <label>Time</label>
                                                 <input type="text"
                                                     class="form-control {{ $errors->has('time') ? ' is-invalid' : '' }}"
                                                     name="time" tabindex="11" value="{{ old('time') }}" autofocus>
@@ -475,17 +488,17 @@
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Allergies</label>
+                                                <label>Severity</label>
                                                 <input type="text"
-                                                    class="form-control {{ $errors->has('allergies') ? ' is-invalid' : '' }}"
-                                                    name="allergies" tabindex="12" value="{{ old('allergies') }}"
-                                                    autofocus> @error('allergies')
+                                                    class="form-control {{ $errors->has('severity') ? ' is-invalid' : '' }}"
+                                                    name="severity" tabindex="12" value="{{ old('severity') }}"
+                                                    autofocus> @error('severity')
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        {{-- <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Past Medications</label>
                                                 <input type="text"
@@ -496,23 +509,9 @@
                                                     <p style="color:red"><small>{{ $message }}</small></p>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="form-group">
-                                                <label>Events leading up to emergency</label>
-                                                <input type="text"
-                                                    class="form-control {{ $errors->has('past_medications') ? ' is-invalid' : '' }}"
-                                                    name="leading_up_to_emergency" tabindex="15"
-                                                    value="{{ old('leading_up_to_emergency') }}" autofocus>
-                                                @error('leading_up_to_emergency')
-                                                    <p style="color:red"><small>{{ $message }}</small></p>
-                                                @enderror
-                                            </div>
-                                        </div>
                                     </div>
 
                                 </div>

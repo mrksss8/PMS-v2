@@ -212,27 +212,36 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label>location</label>
-                                                                <!-- provoke -->
+                                                          
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->provoke }}" disabled>
+                                                                    value="{{ $consultation->location }}" disabled>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label>duration</label>
-                                                                <!-- quality -->
+                                       
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->quality }}" disabled>
+                                                                    value="{{ $consultation->duration }}" disabled>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label for="">Character Aggravating Factors</label>
-                                                                {{-- <label>Severity</label> --}}
+                                                                <label for="">Character</label>
+                                                 
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->severity }}" disabled>
+                                                                    value="{{ $consultation->character }}" disabled>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mb-1">
+                                                                <label for="">Aggravating Factor</label>
+                                                 
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $consultation->aggravating_factor }}" disabled>
                                                             </div>
                                                         </div>
 
@@ -241,13 +250,13 @@
                                                                 <label for="">Radiation</label>
                                                                 {{-- <label>Last Meal</label> --}}
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->last_meal }}" disabled>
+                                                                    value="{{ $consultation->radiation }}" disabled>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Time Severity</label>
+                                                                <label>Time</label>
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->time }}" disabled>
                                                             </div>
@@ -255,30 +264,13 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
-                                                                <label>Allergies</label>
+                                                                <label>Severity</label>
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->allergies }}" disabled>
+                                                                    value="{{ $consultation->severity }}" disabled>
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group mb-1">
-                                                                <label>Past Medication</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ $consultation->past_medication }}"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
-                                                       
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group mb-1">
-                                                                <label>Events leading up to emergency</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ $consultation->leading_up_to_emergency }}"
-                                                                    disabled>
-                                                            </div>
-                                                        </div>
+                                                        
 
                                                     </div>
                                                 </div>
