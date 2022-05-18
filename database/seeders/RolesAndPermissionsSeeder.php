@@ -25,16 +25,16 @@ class RolesAndPermissionsSeeder extends Seeder
         // create permissions
         Permission::create(['name' => 'dashboard permission']);
         Permission::create(['name' => 'user management permission']);
-        Permission::create(['name' => 'patient management permission for doctor']);
         Permission::create(['name' => 'inventory permission']);
-        Permission::create(['name' => 'reports permission']);
-
+        
         //create role
         $role = Role::create(['name' => 'Admin']);
 
         //add all permission to role
         $role->givePermissionTo(Permission::all());
-
+        
         Permission::create(['name' => 'patient management permission for nurse']);
+        Permission::create(['name' => 'patient management permission for doctor']);
+        Permission::create(['name' => 'reports permission']);
     }
 }
