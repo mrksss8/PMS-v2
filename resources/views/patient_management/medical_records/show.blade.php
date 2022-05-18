@@ -82,8 +82,6 @@
 
 
                                                     </div>
-
-
                                                 </div>
 
                                             </div>
@@ -177,10 +175,10 @@
 
                                                                 <div style="display: flex; gap:1rem;">
                                                                     @foreach ($consultation->complaints as $complaint)
-                                                                    @if ($complaint->complaint != null)
-                                                                    <span class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
-                                                                        
-                                                                    @endif
+                                                                        @if ($complaint->complaint != null)
+                                                                            <span
+                                                                                class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
+                                                                        @endif
                                                                     @endforeach
                                                                 </div>
                                                             </div>
@@ -212,7 +210,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label>location</label>
-                                                          
+
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->location }}" disabled>
                                                             </div>
@@ -221,7 +219,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label>duration</label>
-                                       
+
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->duration }}" disabled>
                                                             </div>
@@ -230,7 +228,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label for="">Character</label>
-                                                 
+
                                                                 <input type="text" class="form-control"
                                                                     value="{{ $consultation->character }}" disabled>
                                                             </div>
@@ -239,9 +237,10 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group mb-1">
                                                                 <label for="">Aggravating Factor</label>
-                                                 
+
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->aggravating_factor }}" disabled>
+                                                                    value="{{ $consultation->aggravating_factor }}"
+                                                                    disabled>
                                                             </div>
                                                         </div>
 
@@ -270,7 +269,7 @@
                                                             </div>
                                                         </div>
 
-                                                        
+
 
                                                     </div>
                                                 </div>
@@ -279,216 +278,439 @@
                                     </div>
                                 </div>
 
-                                
-                                 <!-- labtest --> 
-                                 <div class="col-md-12">
-                                    <div class="card shadow px-0">
+
+                                <!-- Intervention -->
+                                <div class="col-lg-12">
+                                    <div class="card shadow">
                                         <div class="col-12">
                                             <div class="card-header px-0">
-                                                <span style="color:white; background-color: #033571; width: 100%;"
-                                                    class="px-3">
-                                                    Lab Test
+                                                <span
+                                                    style="color:white; background-color: #033571; width: 100%; font-size:16px;"
+                                                    class="px-3 text-center">
+                                                    Intervention
                                                 </span>
                                             </div>
-                                            <div class="card-body py-0">
-                                                <div class="row">
-                                                    @foreach ($consultation->lab_tests as $lab_test)
-                                                        
-                                                    <div class="col-md-4 mb-3">
-                                                        <div class="form-group mb-1 mt-3">
-                                                            <span style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
+                                        </div>
+
+                                        <div class="card-body py-0">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Medicine Given</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->doctor_intervention->medicine != null ? $consultation->doctor_intervention->medicine : 'None' }}"
+                                                                class="form-control" disabled>
                                                         </div>
                                                     </div>
-                                                    
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Quantity</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->doctor_intervention->med_qty != null ? $consultation->doctor_intervention->med_qty : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Supply Given</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->doctor_intervention->supply != null ? $consultation->doctor_intervention->supply : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Quantity</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->doctor_intervention->supply_qty != null ? $consultation->doctor_intervention->supply_qty : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Action</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->doctor_intervention->action }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @if ($consultation->doctor_intervention->action == 'Clinic-Rest')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Number of Minutes</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->clinic_rest_num_of_mins }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approve By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->clinic_rest_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if ($consultation->doctor_intervention->action == 'Sent-to-Home')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approve By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->sent_to_home_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+                                            @if ($consultation->doctor_intervention->action == 'Sent-to-Emergency')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approved By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->sent_to_emer_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">if Refused</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->sent_to_emer_refusal }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Emergency Room Refusal</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->sent_to_emer_refuse_witness }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Witnesses If Refused</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->sent_to_emer_refuse_waiver }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+
+                                            @if ($consultation->doctor_intervention->action == 'other_intervention_info')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Information (Optional)</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->doctor_intervention->other_intervention_info }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+                                            
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- labtest -->
+                            <div class="col-md-12">
+                                <div class="card shadow px-0">
+                                    <div class="col-12">
+                                        <div class="card-header px-0">
+                                            <span style="color:white; background-color: #033571; width: 100%;"
+                                                class="px-3">
+                                                Lab Test
+                                            </span>
+                                        </div>
+                                        <div class="card-body py-0">
+                                            <div class="row">
+                                                @foreach ($consultation->lab_tests as $lab_test)
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="form-group mb-1 mt-3">
+                                                            <span
+                                                                style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-md-8">
                                                         <div class="form-group mb-1 mt-3">
                                                             @if ($lab_test->filename != null)
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <span style=" font-weight: 700;">{{ $lab_test->filename }}</span>
-                                                                    {{-- <img src="{{ '/storage/'.$lab_test->path }}"> --}}
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <span
+                                                                            style=" font-weight: 700;">{{ $lab_test->filename }}</span>
+                                                                        {{-- <img src="{{ '/storage/'.$lab_test->path }}"> --}}
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <button type="button"
+                                                                            class="btn btn-primary btn-sm labtest_img"
+                                                                            data-toggle="modal" data-target="#labtest_img"
+                                                                            data-labtest_path="{{ $lab_test->path }}">
+                                                                            View</button>
+                                                                        <button
+                                                                            class="btn btn-success btn-sm">Download</button>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-6">
-                                                                    <button type="button" class="btn btn-primary btn-sm labtest_img" data-toggle="modal"
-                                                                    data-target="#labtest_img" 
-                                                                    data-labtest_path="{{ $lab_test->path }}">
-                                                                    View</button>
-                                                                    <button class = "btn btn-success btn-sm">Download</button>
-                                                                </div>
-                                                            </div>
-                                                            
                                                             @else
-                                                                
-                                                            No Uploaded Labtest
+                                                                No Uploaded Labtest
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    @endforeach
+                                                @endforeach
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Diagnosis -->
-                <div class="col-lg-12">
-                    <div class="card shadow">
-                        <div class="col-12">
-                            <div class="card-header px-0">
-                                <span style="color:white; background-color: #033571; width: 100%; font-size:16px;"
-                                    class="px-3 text-center">
-                                    Diagnosis
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-body py-0">
-                            @forelse ($consultation->patient_diagnosis as $patient_diagnosis)
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label style="color: black">Level of consciousness</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                </div>
-                                                <input value="{{ $patient_diagnosis->level_of_consciousness }}"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label style="color: black">Breathing Description</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                </div>
-                                                <input type="text" value="{{ $patient_diagnosis->breathing }}"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label style="color: black">Skin Description</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                </div>
-                                                <input type="text" value="{{ $patient_diagnosis->skin }}"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label style="color: black">Time</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                </div>
-                                                <input type="text" value="{{ $patient_diagnosis->created_at }}"
-                                                    class="form-control">
-                                            </div>
+                            <!-- Diagnosis -->
+                            <div class="col-lg-12">
+                                <div class="card shadow">
+                                    <div class="col-12">
+                                        <div class="card-header px-0">
+                                            <span
+                                                style="color:white; background-color: #033571; width: 100%; font-size:16px;"
+                                                class="px-3 text-center">
+                                                Diagnosis
+                                            </span>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-                                            <label style="color: black">Diagnostic Test</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
+                                    <div class="card-body py-0">
+                                        @forelse ($consultation->patient_diagnosis as $patient_diagnosis)
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Level of consciousness</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $patient_diagnosis->level_of_consciousness }}"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <input type="text" value="{{ $patient_diagnosis->diagnostic_test }}"
-                                                    class="form-control {{ $patient_diagnosis->diagnostic_test == 'Normal' ? 'bg-success' : 'bg-danger' }}">
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label style="color: black">ICD-10 Diagnosis</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Breathing Description</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input type="text"
+                                                                value="{{ $patient_diagnosis->breathing }}"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <textarea class="form-control" style="height: auto" disabled>{{ $patient_diagnosis->ICD_10_diagnosis }}</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label style="color: black">Assessment</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Skin Description</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input type="text" value="{{ $patient_diagnosis->skin }}"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <textarea class="form-control" style="height: auto" disabled>{{ $patient_diagnosis->assessment }}</textarea>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Time</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input type="text"
+                                                                value="{{ $patient_diagnosis->created_at }}"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label style="color: black">Diagnostic Test</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input type="text"
+                                                                value="{{ $patient_diagnosis->diagnostic_test }}"
+                                                                class="form-control {{ $patient_diagnosis->diagnostic_test == 'Normal' ? 'bg-success' : 'bg-danger' }}">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label style="color: black">ICD-10 Diagnosis</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <textarea class="form-control" style="height: auto" disabled>{{ $patient_diagnosis->ICD_10_diagnosis }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Assessment</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <textarea class="form-control" style="height: auto" disabled>{{ $patient_diagnosis->assessment }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </div>
+
+                                        @empty
+                                            <p>
+                                                No Diagnosis Found
+                                            </p>
+                                        @endforelse
+
                                     </div>
 
                                 </div>
-
-                            @empty
-                                <p>
-                                    No Diagnosis Found
-                                </p>
-                            @endforelse
-
+                            </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
+
+
+
+
+
+
+        </div>
 
         </div>
         </div>
     </section>
 
-     <!-- Labtest Modal -->
-     <div class="modal fade" id="labtest_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-     <div class="modal-dialog modal-lg" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLongTitle" style="color: #033571;">Lab Test Image</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-                 <div class="modal-body">
-                     <div class="card-body">
-                         <div style="display: flex; justify-content: center;">
-                             <img style="border:1px solid #033571;" id= "img">
-                     </div>
-                     </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     </div>
-                 </div>
-         </div>
-     </div>
- </div>
+    <!-- Labtest Modal -->
+    <div class="modal fade" id="labtest_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: #033571;">Lab Test Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: center;">
+                            <img style="border:1px solid #033571;" id="img">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
 
-<script>  
-    $(document).ready(function() {
+            $('.labtest_img').click(function() {
+                $("#img").attr("src", "/storage/" + $(this).data('labtest_path'));
+            });
 
-        $('.labtest_img').click(function() {
-               $("#img").attr("src","/storage/"+$(this).data('labtest_path'));
         });
-
-    });
-</script>
-
+    </script>
 @endsection
-

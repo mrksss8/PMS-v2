@@ -46,7 +46,7 @@ class MedicalRecordsController extends Controller
      */
     public function show($id)
     {
-        $consultation = Consultation::with('patient','complaints','patient_diagnosis')->findorfail($id);
+        $consultation = Consultation::with('patient','complaints','patient_diagnosis','doctor_intervention')->findorfail($id);
         return view('patient_management.medical_records.show',compact('consultation'));
     }
 
