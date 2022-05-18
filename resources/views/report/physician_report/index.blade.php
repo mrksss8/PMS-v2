@@ -62,23 +62,20 @@
                                         <th style="color:white;"> Department: </th>
 
                                         <th style="color:white;"> Chief Complaint: </th>
-                                        <th style="color:white;"> Other Chief Complaint: </th>
 
                                         <th style="color:white;"> Diagnosis: </th>
                                         <th style="color:white;"> Assestment Remarks: </th>
-                                        <th style="color:white;"> Subject: </th>
+                                        {{-- <th style="color:white;"> Subject: </th>
                                         <th style="color:white;"> Ojectives: </th>
                                         <th style="color:white;"> Plan: </th>
                                         <th style="color:white;"> Implementation: </th>
-                                        <th style="color:white;"> Evaluation: </th>
+                                        <th style="color:white;"> Evaluation: </th> --}}
 
                                         <th style="color:white;"> Medicine Given: </th>
                                         <th style="color:white;"> Quantiy of Medicine: </th>
                                         <th style="color:white;"> Supply Given: </th>
                                         <th style="color:white;"> Quantiy of Supply: </th>
-                                        <th style="color:white;"> Remarks: </th>
-                                        <th style="color:white;"> Intervention: </th>
-                                        <th style="color:white;"> Other Intervention: </th>
+                                        {{-- <th style="color:white;"> Remarks: </th> --}}
 
                                         <th style="color:white;"> Intervention Action: </th>
                                         <th style="color:white;"> No. of Mins: </th>
@@ -91,10 +88,10 @@
 
                                         <th style="color:white;"> Other Info Action: </th>
 
-                                        <th style="color:white;"> Medical Certificate Status: </th>
+                                        {{-- <th style="color:white;"> Medical Certificate Status: </th>
                                         <th style="color:white;"> Fit to Work: </th>
                                         <th style="color:white;"> FTW Date: </th>
-                                        <th style="color:white;"> Nurse On Duty: </th>
+                                        <th style="color:white;"> Nurse On Duty: </th> --}}
 
 
 
@@ -123,7 +120,6 @@
                                                         {{ $a->complaint }}
                                                     @endforeach
                                                 </td>
-                                                <td></td>
                                                 <td>
                                                     @foreach ($i->patient_diagnosis as $a)
                                                         {{ $a->ICD_10_diagnosis }}
@@ -134,21 +130,16 @@
                                                         {{ $a->assessment }}
                                                     @endforeach
                                                 </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                          
 
 
                                                 <td>{{ $i->doctor_intervention->medicine }}</td>
                                                 <td>{{ $i->doctor_intervention->med_qty }}</td>
                                                 <td>{{ $i->doctor_intervention->supply }}</td>
                                                 <td>{{ $i->doctor_intervention->supply_qty }}</td>
-                                                <td></td>
+                                           
 
-                                                <td></td>
-                                                <td></td>
+
 
                                                 <td>{{ $i->doctor_intervention->action }}</td>
                                                 <td>{{ $i->doctor_intervention->clinic_rest_num_of_mins }}</td>
@@ -159,13 +150,8 @@
                                                 <td>{{ $i->doctor_intervention->sent_to_emer_refuse_witness }}</td>
                                                 <td></td>
                                                 <td>{{ $i->doctor_intervention->other_intervention_info }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                {{-- <td></td>
-                                                <td></td>
-                                                <td></td> --}}
+                                              
+                     
                                             </tr>
                                         @endif
                                     @endforeach
