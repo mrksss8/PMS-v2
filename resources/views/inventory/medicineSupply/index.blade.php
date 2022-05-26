@@ -347,7 +347,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            <select class=" form-control" name="category" id="select2Multiple">
+                                            <select class=" form-control" name="category" id="select2Multiple" required>
 
                                                 @foreach ($medicince_categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->category_name }}

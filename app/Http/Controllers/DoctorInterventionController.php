@@ -58,7 +58,7 @@ class DoctorInterventionController extends Controller
                 ]);
             
                 DoctorIntervention::create([
-                 'medicine' => $med->brand_name,
+                 'medicine' => $med->brand_name.' '. $med->dosage,
                  'med_qty' => $request->med_qty,
                 //  'supply' => $sup->supply,
                 //  'supply_qty' => $request->supply_qty,
@@ -81,6 +81,10 @@ class DoctorInterventionController extends Controller
                 return redirect()->route('dashboard.index')->with('success','Medicine exceed from Stock!');  
             }
         }
+
+
+
+
 
         if($request->supply != null){   
 

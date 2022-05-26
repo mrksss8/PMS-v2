@@ -42,11 +42,89 @@ class NurseInterventionController extends Controller
     public function store(NurseInterventionRequest $request)
     {
 
-            NurseIntervention::create([
-            'medicine' => $request->medicine,
-            'med_qty' => $request->med_qty,
-            'supply' => $request->supply,
-            'supply_qty' => $request->supply_qty,
+        if($request->medicine != null){     
+            $med = Medicine::findorfail($request->medicine);
+
+            if ($med->beginning_stock >= $request->med_qty){
+
+                $new_stock =  $med->beginning_stock - $request->med_qty;
+                $med->beginning_stock = $new_stock;
+                $med->save();
+                
+                medicine_consumption::create([
+                    'consume' => $request->med_qty,
+                    'medicine_id' => $med->id,
+                ]);
+            
+                NurseIntervention::create([
+                    'medicine' => $med->brand_name.' '. $med->dosage,
+                    'med_qty' => $request->med_qty,
+                    // 'supply' => $request->supply,
+                    // 'supply_qty' => $request->supply_qty,
+                    'action' => $request->action,
+                    'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+                    'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+                    'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+                    'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+                    'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+                    'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+                    'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+                    'other_intervention_info' => $request->other_intervention_info,
+                    'consultation_id' => $request->consultation_id
+                    ]);
+             
+                return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');  
+
+            }
+            else{
+                return redirect()->route('dashboard.index')->with('success','Medicine exceed from Stock!');  
+            }
+        }
+
+
+            
+
+        if($request->supply != null){   
+
+            $sup = Supply::findorfail($request->supply);
+
+            if ($sup->beginning_stock >= $request->supply_qty){
+
+                $new_stock =  $sup->beginning_stock - $request->supply_qty;
+                $sup->beginning_stock = $new_stock;
+                $sup->save();
+                
+                NurseIntervention::create([
+                    // 'medicine' => $med->brand_name.' '. $med->dosage,
+                    // 'med_qty' => $request->med_qty,
+                     'supply' => $sup->supply,
+                     'supply_qty' => $request->supply_qty,
+                    'action' => $request->action,
+                    'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
+                    'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
+                    'sent_to_home_approve_by' => $request->sent_to_home_approve_by,
+                    'sent_to_emer_approve_by' => $request->sent_to_emer_approve_by,
+                    'sent_to_emer_refusal' => $request->sent_to_emer_refusal,
+                    'sent_to_emer_refuse_witness' => $request->sent_to_emer_refuse_witness,
+                    'sent_to_emer_refuse_waiver' => $request->sent_to_emer_refuse_waiver,
+                    'other_intervention_info' => $request->other_intervention_info,
+                    'consultation_id' => $request->consultation_id
+                    ]);
+             
+                return redirect()->route('dashboard.index')->with('success','Intervention Added Successfully!');  
+
+            }
+            else{
+                return redirect()->route('dashboard.index')->with('success','Supply exceed from Stock!');  
+            }
+        }
+
+
+        NurseIntervention::create([
+            // 'medicine' => $med->brand_name.' '. $med->dosage,
+            // 'med_qty' => $request->med_qty,
+            //  'supply' => $sup->supply,
+            //  'supply_qty' => $request->supply_qty,
             'action' => $request->action,
             'clinic_rest_num_of_mins' => $request->clinic_rest_num_of_mins,
             'clinic_rest_approve_by' => $request->clinic_rest_approve_by,
@@ -58,32 +136,7 @@ class NurseInterventionController extends Controller
             'other_intervention_info' => $request->other_intervention_info,
             'consultation_id' => $request->consultation_id
             ]);
-
-            if($request->medicine != null){
-
-                $medicine = Medicine::findorfail($request->medicine);
-                
-             $new_stock =  $medicine->beginning_stock - $request->med_qty;
-
-             $medicine->beginning_stock = $new_stock;
-             $medicine->save();
-
-
-             medicine_consumption::create([
-                 'consume' => $request->med_qty,
-                 'medicine_id' => $medicine->id,
-             ]);
-
-            }
-             
-            if($request->supply != null){
-            $supply = Supply::findorfail($request->supply);
-            $new_stock =  $supply->beginning_stock - $request->supply_qty;
-
-            $supply->beginning_stock = $new_stock;
-            $supply->save();
-            }
-
+     
             
 
             return redirect()->route('patients.show',$request->patient_id)->with('success','Intervention Added Successfully!');

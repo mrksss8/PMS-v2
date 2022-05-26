@@ -105,7 +105,7 @@ Route::group([ 'prefix' => 'medicine_category', 'middleware' => 'auth'], functio
 
 //medecine 
 Route::group([ 'prefix' => 'medicine', 'middleware' => 'auth'], function() {
-
+    Route::get('/index',[App\Http\Controllers\MedicineController::class, 'index'])->name('medicine.index');
     Route::post('/store',[App\Http\Controllers\MedicineController::class, 'store'])->name('medicine.store');
     Route::put('/update/{id}',[App\Http\Controllers\MedicineController::class, 'update'])->name('medicine.update');
 });

@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $medicines = Medicine::all();
         $supplies = Supply::all();
 
-        $past_consultations = Consultation::with('patient')->latest()->take(5)->get();
+        $past_consultations = Consultation::with('patient')->latest()->take(5)->orderBy('id', 'DESC')->get();
 
         return view('dashboard.index',compact('patients','for_interventions','medicines','supplies','past_consultations'));
 

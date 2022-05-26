@@ -188,6 +188,7 @@
                                             </div>
                                         </div>
 
+                                        @if ($consultation->doctor_intervention != null)
                                         <!-- signs and symptoms -->
                                         <div class="card-header px-0">
                                             <div class="col-12">
@@ -275,10 +276,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
 
-
+                                @if ($consultation->doctor_intervention != null)
                                 <!-- Intervention -->
                                 <div class="col-lg-12">
                                     <div class="card shadow">
@@ -495,7 +497,226 @@
                                     </div>
 
                                 </div>
+                                @endif
+                                @if ($consultation->nurse_intervention != null)
+                                <div class="col-lg-12">
+                                    <div class="card shadow">
+                                        <div class="col-12">
+                                            <div class="card-header px-0">
+                                                <span
+                                                    style="color:white; background-color: #033571; width: 100%; font-size:16px;"
+                                                    class="px-3 text-center">
+                                                    Intervention
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body py-0">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Medicine Given</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->nurse_intervention->medicine != null ? $consultation->nurse_intervention->medicine : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Quantity</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->nurse_intervention->med_qty != null ? $consultation->nurse_intervention->med_qty : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Supply Given</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->nurse_intervention->supply != null ? $consultation->nurse_intervention->supply : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Quantity</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->nurse_intervention->supply_qty != null ? $consultation->nurse_intervention->supply_qty : 'None' }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label style="color: black">Action</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                            </div>
+                                                            <input
+                                                                value="{{ $consultation->nurse_intervention->action }}"
+                                                                class="form-control" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @if ($consultation->nurse_intervention->action == 'Clinic-Rest')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Number of Minutes</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->clinic_rest_num_of_mins }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approve By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->clinic_rest_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if ($consultation->nurse_intervention->action == 'Sent-to-Home')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approve By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->sent_to_home_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+                                            @if ($consultation->nurse_intervention->action == 'Sent-to-Emergency')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Approved By</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->sent_to_emer_approve_by }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">if Refused</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->sent_to_emer_refusal }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Emergency Room Refusal</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->sent_to_emer_refuse_witness }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Witnesses If Refused</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->sent_to_emer_refuse_waiver }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+
+                                            @if ($consultation->nurse_intervention->action == 'other_intervention_info')
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label style="color: black">Information (Optional)</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                </div>
+                                                                <input
+                                                                    value="{{ $consultation->nurse_intervention->other_intervention_info }}"
+                                                                    class="form-control" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endif
+
+                                            
+                                        </div>
+
+                                    </div>
+
+                                </div> 
+                                @endif
                             </div>
+                            @if ($consultation->doctor_intervention != null)
                             <!-- labtest -->
                             <div class="col-md-12">
                                 <div class="card shadow px-0">
@@ -660,6 +881,7 @@
 
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

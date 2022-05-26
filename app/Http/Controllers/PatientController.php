@@ -14,10 +14,10 @@ class PatientController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
-        $patients = Patient::with('department','medical_records')->get();
+        $patients = Patient::with('department','medical_records')->orderBy('id', 'DESC')->get();
         return view('patient_management.patient_list.index',compact('patients'));
     }
 
@@ -38,8 +38,7 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PatientRequest $request)
-    {
-
+    {        
          $patient = Patient::create([
             'first_name' => $request->last_name,
             'last_name' => $request->first_name,
