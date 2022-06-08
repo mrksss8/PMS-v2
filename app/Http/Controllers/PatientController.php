@@ -6,6 +6,8 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Models\medical_history;
 use Carbon\Carbon;
+use App\Models\User;
+use Auth;
 use App\Http\Requests\PatientRequest;
 
 class PatientController extends Controller
@@ -78,9 +80,13 @@ class PatientController extends Controller
      */
     public function show($id)
     {   
+        $doctors = User::whereHas('user_roles.roles', function ($query) {
+            return $query->where('name', '=', 'Doctor'); 
+        })->get();
+
         $patient = Patient::with('department','medical_records','consultations')->findorfail($id);
 
-        return view('patient_management.patient_list.show',compact('patient'));
+        return view('patient_management.patient_list.show',compact('patient','doctors'));
     }
 
     /**
