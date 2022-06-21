@@ -298,6 +298,7 @@
                                             <div class="card-body py-0">
                                                 <div class="row">
                                                     @forelse ($consultation->lab_tests as $lab_test)
+
                                                     <div class="col-md-4 mb-3">
                                                         <div class="form-group mb-1 mt-3">
                                                             <span style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
@@ -319,33 +320,7 @@
                                                                     View</button>
                                                                     {{-- <button class = "btn btn-success btn-sm">Download</button> --}}
                                                                 </div>
-                                                        <div class="col-md-4 mb-3">
-                                                            <div class="form-group mb-1 mt-3">
-                                                                <span
-                                                                    style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
                                                             </div>
-                                                        </div>
-
-                                                        <div class="col-md-8">
-                                                            <div class="form-group mb-1 mt-3">
-                                                                @if ($lab_test->filename != null)
-                                                                    <div class="row">
-                                                                        <div class="col-6">
-                                                                            <span
-                                                                                style=" font-weight: 700;">{{ $lab_test->filename }}</span>
-                                                                            {{-- <img src="{{ '/storage/'.$lab_test->path }}"> --}}
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <button type="button"
-                                                                                class="btn btn-primary btn-sm labtest_img"
-                                                                                data-toggle="modal"
-                                                                                data-target="#labtest_img"
-                                                                                data-labtest_path="{{ $lab_test->path }}">
-                                                                                View</button>
-                                                                            <button
-                                                                                class="btn btn-success btn-sm">Download</button>
-                                                                        </div>
-                                                                    </div>
                                                                 @else
                                                                     <form
                                                                         action="{{ route('req_lab.update', $lab_test->id) }}"
