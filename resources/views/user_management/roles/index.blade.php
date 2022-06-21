@@ -75,9 +75,9 @@
                                                         <span class="btn btn-icon icon-left mr-3 btn-outline-primary">
                                                             Cannot Take Action</span>
                                                     @else
-                                                        <a href="#" class="btn btn-icon icon-left mr-3 btn-outline-primary">
+                                                        {{-- <a href="#" class="btn btn-icon icon-left mr-3 btn-outline-primary">
                                                             <i class="far fa-edit"></i>
-                                                            Edit</a>
+                                                            Edit</a> --}}
 
                                                         <button type="button"
                                                             class="btn btn-icon icon-left mr-3 btn-outline-danger role-delete"

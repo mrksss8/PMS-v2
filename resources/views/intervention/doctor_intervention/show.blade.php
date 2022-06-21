@@ -302,7 +302,7 @@
                                                                     data-target="#labtest_img" 
                                                                     data-labtest_path="{{ $lab_test->path }}">
                                                                     View</button>
-                                                                    <button class = "btn btn-success btn-sm">Download</button>
+                                                                    {{-- <button class = "btn btn-success btn-sm">Download</button> --}}
                                                                 </div>
                                                             </div>
                                                             
