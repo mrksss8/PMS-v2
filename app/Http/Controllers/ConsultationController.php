@@ -64,6 +64,9 @@ class ConsultationController extends Controller
                 'time' => $request_severe->time,
                 'severity' => $request_severe->severity,
 
+
+                'doctor' => $request_severe->doctor_to_intervent,
+
                 //patient foreign key
                 'patient_id' => $request_severe->patient_id,
 

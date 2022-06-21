@@ -15,6 +15,14 @@
             <h3 class="page__heading">Intervention Doctor</h3>
         </div>
         <div class="section-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -30,12 +38,17 @@
                                             <div class="text-primary" style="font-weight:600; font-size:15px;">
                                                 <h5 class="text-primary pt-3">
                                                     {{ $consultation->patient->full_name }}</h5>
-                                                <p class="mb-0" style="font-weight: 600">Age: <span class = "text-dark">{{ $consultation->patient->age() }} Years Old</span> </p>
-                                                <p class="mb-0" style="font-weight: 600">Birthday:<span class = "text-dark"> {{ $consultation->patient->birthday }}</span>
+                                                <p class="mb-0" style="font-weight: 600">Age: <span
+                                                        class="text-dark">{{ $consultation->patient->age() }} Years
+                                                        Old</span> </p>
+                                                <p class="mb-0" style="font-weight: 600">Birthday:<span
+                                                        class="text-dark"> {{ $consultation->patient->birthday }}</span>
                                                 </p>
-                                                <p class="mb-0" style="font-weight: 600">Gender: <span class = "text-dark">{{ $consultation->patient->gender }} </span></p>
-                                                <p class="mb-0" style="font-weight: 600">Dept.:<span class = "text-dark">
-                                                    {{ $consultation->patient->department->department }}</span>
+                                                <p class="mb-0" style="font-weight: 600">Gender: <span
+                                                        class="text-dark">{{ $consultation->patient->gender }} </span></p>
+                                                <p class="mb-0" style="font-weight: 600">Dept.:<span
+                                                        class="text-dark">
+                                                        {{ $consultation->patient->department->department }}</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -168,10 +181,11 @@
 
                                                                 <div style="display: flex; gap:1rem;">
                                                                     @foreach ($consultation->complaints as $complaint)
-                                                                    @if ($complaint->complaint != null)
-                                                                        <span class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
-                                                                    @endif
-                                                                        @endforeach
+                                                                        @if ($complaint->complaint != null)
+                                                                            <span
+                                                                                class="btn btn-outline-primary">{{ $complaint->complaint }}</span>
+                                                                        @endif
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -230,7 +244,8 @@
                                                                 <label for="">Aggravating Factors</label>
                                                                 {{-- <label>Severity</label> --}}
                                                                 <input type="text" class="form-control"
-                                                                    value="{{ $consultation->aggravating_factor }}" disabled>
+                                                                    value="{{ $consultation->aggravating_factor }}"
+                                                                    disabled>
                                                             </div>
                                                         </div>
 
@@ -259,18 +274,18 @@
                                                             </div>
                                                         </div>
 
-                                                    
+
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        
+
                                     </div>
                                 </div>
 
-                                <!-- labtest --> 
+                                <!-- labtest -->
                                 <div class="col-md-12">
                                     <div class="card shadow px-0">
                                         <div class="col-12">
@@ -304,26 +319,51 @@
                                                                     View</button>
                                                                     {{-- <button class = "btn btn-success btn-sm">Download</button> --}}
                                                                 </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <div class="form-group mb-1 mt-3">
+                                                                <span
+                                                                    style=" font-weight: 700;">{{ $lab_test->labtest }}</span>
                                                             </div>
-                                                            
-                                                            @else
-                                                                
-                                                                <form action="{{ route('req_lab.update', $lab_test->id) }}" method="post" enctype="multipart/form-data">
-                                                                @csrf
-                                                                <input type="file" name = "{{ $lab_test->labtest }}">
-                                                                <button type="submit" class = "btn btn-primary btn-sm"> Save </button>
-                                                                </form>
-
-                                                            @endif
                                                         </div>
-                                                    </div>
-                                                    @empty
-                                                    <div class = "w-100">
 
-                                                        <p class = "text-center"> No Labtest Required</p>
-                                                    </div>
-                                                    
-                                                    
+                                                        <div class="col-md-8">
+                                                            <div class="form-group mb-1 mt-3">
+                                                                @if ($lab_test->filename != null)
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <span
+                                                                                style=" font-weight: 700;">{{ $lab_test->filename }}</span>
+                                                                            {{-- <img src="{{ '/storage/'.$lab_test->path }}"> --}}
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary btn-sm labtest_img"
+                                                                                data-toggle="modal"
+                                                                                data-target="#labtest_img"
+                                                                                data-labtest_path="{{ $lab_test->path }}">
+                                                                                View</button>
+                                                                            <button
+                                                                                class="btn btn-success btn-sm">Download</button>
+                                                                        </div>
+                                                                    </div>
+                                                                @else
+                                                                    <form
+                                                                        action="{{ route('req_lab.update', $lab_test->id) }}"
+                                                                        method="post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="file"
+                                                                            name="{{ $lab_test->labtest }}">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary btn-sm"> Save </button>
+                                                                    </form>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @empty
+                                                        <div class="w-100">
+
+                                                            <p class="text-center"> No Labtest Required</p>
+                                                        </div>
                                                     @endforelse
 
                                                 </div>
@@ -429,7 +469,7 @@
                                                 <div class="input-group-prepend">
                                                 </div>
                                                 <textarea class="form-control" style="height: auto" disabled>{{ $patient_diagnosis->assessment }}</textarea>
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -437,7 +477,7 @@
                                 </div>
 
                             @empty
-                                <p class = "text-center">
+                                <p class="text-center">
                                     No Diagnosis Found (Pls Add First)
                                 </p>
                             @endforelse
@@ -450,23 +490,21 @@
             </div>
 
             @forelse ($consultation->patient_diagnosis as $patient_diagnosis)
-            
             @empty
-            <!-- Add Diagnosis -->
-            <div class="col-lg-12">
-                <div class="card shadow">
-                    <div class="card-body p-3">
+                <!-- Add Diagnosis -->
+                <div class="col-lg-12">
+                    <div class="card shadow">
+                        <div class="card-body p-3">
 
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                                data-target="#add-diagnosis">Add
-                                Diagnosis</button>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                    data-target="#add-diagnosis">Add
+                                    Diagnosis</button>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-                
             @endforelse
         </div>
         </div>
@@ -499,13 +537,12 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div> --}}
-                                            <select style="width:367px;" class="  form-control"
-                                                name="medicine">
+                                            <select style="width:367px;" class="  form-control" name="medicine">
 
                                                 @foreach ($medicines as $medicine)
-                                                <option selected disabled hidden>Choose Medicine</option>
+                                                    <option selected disabled hidden>Choose Medicine</option>
                                                     <option value={{ $medicine->id }}>
-                                                        {{ $medicine->brand_name}} {{ $medicine->dosage}}</option>
+                                                        {{ $medicine->brand_name }} {{ $medicine->dosage }}</option>
                                                 @endforeach
                                             </select>
                                             {{-- <input type="text" name="medicine" class="form-control"> --}}
@@ -521,7 +558,7 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                             </div>
-                                            
+
                                             <input type="text" name="med_qty" class="form-control">
                                         </div>
                                     </div>
@@ -539,8 +576,8 @@
                                             <select style="width:367px;" class="  form-control" name="supply">
 
                                                 @foreach ($supplies as $supply)
-                                                <option selected disabled hidden>Choose Supply</option>
-                                                    <option value={{ $supply->id }}> {{ $supply->supply}}</option>
+                                                    <option selected disabled hidden>Choose Supply</option>
+                                                    <option value={{ $supply->id }}> {{ $supply->supply }}</option>
                                                 @endforeach
                                             </select>
                                             {{-- <input type="text" name="supply" class="form-control" required> --}}
@@ -914,16 +951,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <div style="display: flex; justify-content: center;">
-                                <img style="border:1px solid #033571;" id= "img">
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: center;">
+                            <img style="border:1px solid #033571;" id="img">
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -942,17 +979,13 @@
     </script>
 
 
-<script>  
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-        $('.labtest_img').click(function() {
-               $("#img").attr("src","/storage/"+$(this).data('labtest_path'));
+            $('.labtest_img').click(function() {
+                $("#img").attr("src", "/storage/" + $(this).data('labtest_path'));
+            });
+
         });
-
-    });
-</script>
-
-
-
-
+    </script>
 @endsection

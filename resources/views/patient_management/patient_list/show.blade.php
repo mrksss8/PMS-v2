@@ -136,7 +136,7 @@
                                                         @foreach (App\Models\Consultation::getComplaints($consultation->id) as $complaint)
                                                             <span class="text-primary" style="font-weight: 700">
                                                                 @if ($complaint->complaint != null)
-                                                                {{ $complaint->complaint }},
+                                                                    {{ $complaint->complaint }},
                                                                 @endif
                                                             </span>
                                                         @endforeach
@@ -289,7 +289,8 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Tooth Ache" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="Tooth Ache"
+                                                        {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Tooth Ache
                                                     </label>
@@ -298,7 +299,8 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Low Grade Fever" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="Low Grade Fever"
+                                                        {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Low Grade Fever
                                                     </label>
@@ -308,7 +310,8 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Body Pain" {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="Body Pain"
+                                                        {{ in_array('Tooth Ache', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Body Pain
                                                     </label>
@@ -317,7 +320,8 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="LBM" {{ in_array('LBM', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="LBM"
+                                                        {{ in_array('LBM', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         LBM
                                                     </label>
@@ -327,7 +331,8 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Cut" {{ in_array('Cut', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="Cut"
+                                                        {{ in_array('Cut', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Cut
                                                     </label>
@@ -336,27 +341,30 @@
                                             <div class="col-6 pt-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="complaints[]"
-                                                        value="Wounds" {{ in_array('Wounds', old('complaints', [])) ? 'checked' : '' }}>
+                                                        value="Wounds"
+                                                        {{ in_array('Wounds', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Wound
                                                     </label>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-6 pt-2 mt-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="other"
-                                                        name="complaints[]" value="other" {{ in_array('other', old('complaints', [])) ? 'checked' : '' }}>
+                                                        name="complaints[]" value="other"
+                                                        {{ in_array('other', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Other
                                                     </label>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-6 pt-2 mt-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" id="severe"
-                                                        name="complaints[]" value="severe" {{ in_array('severe', old('complaints', [])) ? 'checked' : '' }}>
+                                                        name="complaints[]" value="severe"
+                                                        {{ in_array('severe', old('complaints', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label">
                                                         Severe
                                                     </label>
@@ -364,7 +372,7 @@
                                             </div>
                                             <div class="col-12 pt-2">
 
-                                                <div class="form-group" id = "other-complaint">
+                                                <div class="form-group" id="other-complaint">
                                                     <label>Other Complaint/s</label>
                                                     <input type="text"
                                                         class="form-control  {{ $errors->has('other') ? ' is-invalid' : '' }}"
@@ -531,7 +539,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="CBC" {{ in_array('CBC', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="CBC"
+                                                    {{ in_array('CBC', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     CBC
                                                 </label>
@@ -540,7 +549,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Xray" {{ in_array('Xray', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="Xray"
+                                                    {{ in_array('Xray', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Xray
                                                 </label>
@@ -550,7 +560,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="DrugTest" {{ in_array('DrugTest', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="DrugTest"
+                                                    {{ in_array('DrugTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Drug Test
                                                 </label>
@@ -559,7 +570,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Fecalysist" {{ in_array('Fecalysist', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="Fecalysist"
+                                                    {{ in_array('Fecalysist', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Fecalysis
                                                 </label>
@@ -569,7 +581,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="Urinalysis" {{ in_array('Urinalysis', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="Urinalysis"
+                                                    {{ in_array('Urinalysis', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Urinalysis
                                                 </label>
@@ -578,7 +591,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="RT-PCRTest" {{ in_array('RT-PCRTest', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="RT-PCRTest"
+                                                    {{ in_array('RT-PCRTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     RT-PCR Test
                                                 </label>
@@ -587,7 +601,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="AntigenTest" {{ in_array('AntigenTest', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="AntigenTest"
+                                                    {{ in_array('AntigenTest', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     Antigen Test
                                                 </label>
@@ -596,7 +611,8 @@
                                         <div class="col-6 pt-2">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="req_LabTest[]"
-                                                    value="CT-scan" {{ in_array('CT-scan', old('req_LabTest', [])) ? 'checked' : '' }}>
+                                                    value="CT-scan"
+                                                    {{ in_array('CT-scan', old('req_LabTest', [])) ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     CT-scan
                                                 </label>
@@ -608,7 +624,7 @@
                                             <div class="form-group">
                                                 <label>Other/s, pls specify </label>
                                                 <input type="text" class="form-control" name="req_LabTest[]"
-                                                    tabindex="15"  autofocus>
+                                                    tabindex="15" autofocus>
                                             </div>
                                         </div>
                                     </div>
@@ -640,6 +656,27 @@
                                             </div>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6 pt-2">
+                                            <div class="form-group">
+                                                <label>Doctor for Intervention:</label>
+                                                <select
+                                                    class="form-control {{ $errors->has('doctor_to_intervent') ? ' is-invalid' : '' }}"
+                                                    name="doctor_to_intervent">
+                                                    <option selected disabled hidden>Select Doctor</option>
+
+                                                    @foreach ($doctors as $doctor)
+                                                    <option value="{{$doctor->id}}">{{$doctor->name}}</option>
+                                                        
+                                                    @endforeach
+                                                </select>
+                                                @error('doctor_to_intervent')
+                                                    <p style="color:red"><small>{{ $message }}</small></p>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>

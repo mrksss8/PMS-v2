@@ -37,6 +37,7 @@ class CreateConsultationsTable extends Migration
             $table->string('radiation')->nullable();
             $table->string('time')->nullable();
             $table->string('severity')->nullable();
+            $table->string('doctor')->nullable();
 
             //patient foreign key
             $table->unsignedBigInteger('patient_id');

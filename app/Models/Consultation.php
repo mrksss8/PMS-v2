@@ -13,7 +13,7 @@ class Consultation extends Model
     use HasFactory;
 
     protected $fillable = ['severe','department','blood_pressure','temperature','respiratory_rate','capillary_refill','weight','pulse_rate','patient_id',
-                            'onset','location','duration','character','aggravating_factor','radiation','time','severity'];
+                            'onset','location','duration','character','aggravating_factor','radiation','time','severity','doctor'];
 
 
     public function patient()

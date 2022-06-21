@@ -8,6 +8,8 @@ use App\Models\Consultation;
 use App\Models\Medicine;
 use App\Models\medicine_consumption;
 use App\Models\Supply;
+use App\Models\User;
+use Auth;
 use App\Http\Requests\DoctorInterventionRequest;
 
 class DoctorInterventionController extends Controller
@@ -19,8 +21,15 @@ class DoctorInterventionController extends Controller
      */
     public function index()
     {
-
-        $for_interventions = Consultation::with('patient','doctor_intervention')->where('severe','=', 'severe')->get();
+        //  $users = User::with('user_roles.roles')->get();
+        
+        //  $doctor = User::whereHas('user_roles.roles', function ($query) {
+            //     return $query->where('name', '=', 'Doctor'); 
+            // })->get();
+            
+        $userDoctorId = Auth::user()->id;
+        
+        $for_interventions = Consultation::with('patient','doctor_intervention')->where('severe','=', 'severe')->where('doctor',$userDoctorId)->get();
         return view('intervention.doctor_intervention.index',compact('for_interventions'));
     }
 
@@ -78,7 +87,7 @@ class DoctorInterventionController extends Controller
 
             }
             else{
-                return redirect()->route('dashboard.index')->with('success','Medicine exceed from Stock!');  
+                return redirect()->route('doctor_intervention.show',$request->consultation_id)->with('success','Medicine exceed from Stock!');  
             }
         }
 
@@ -117,7 +126,7 @@ class DoctorInterventionController extends Controller
 
             }
             else{
-                return redirect()->route('dashboard.index')->with('success','Supply exceed from Stock!');  
+                return redirect()->route('doctor_intervention.show',$request->consultation_id)->with('success','Supply exceed from Stock!');  
             }
         }
 
