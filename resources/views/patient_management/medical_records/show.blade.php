@@ -39,7 +39,7 @@
                                     <div class="card card-primary shadow">
                                         <div class="card-header pb-0 " style="display: block;">
                                             <div class="img-part text-center">
-                                                <img src="{{ asset('img/avatar-mark.jpg') }}" class="rounded-circle"
+                                                <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle"
                                                     alt="Avatar" width="150px">
                                             </div>
                                             <div class="text-primary" style="font-weight:600; font-size:15px;">

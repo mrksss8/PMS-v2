@@ -9,7 +9,7 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown"
                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('img/avatar-mark.jpg') }}"
+                <img alt="image" src="{{ asset('img/logo.jpg') }}"
                      class="rounded-circle mr-1 thumbnail-rounded user-thumbnail ">
                 <div class="d-sm-none d-lg-inline-block">
                     Hi, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>

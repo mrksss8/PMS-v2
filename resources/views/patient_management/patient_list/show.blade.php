@@ -19,7 +19,7 @@
 
                                             <div class="c-img-part">
                                                 <div class="img-part d-flex justify-content-center">
-                                                    <img src="{{ asset('img/avatar-mark.jpg') }}" class="rounded-circle"
+                                                    <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle"
                                                         alt="Avatar" width="150px">
                                                 </div>
                                             </div>
