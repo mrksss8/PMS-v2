@@ -17,6 +17,7 @@ class CreatePatientsTable extends Migration
             $table->id();
 
             //patient information
+            $table->string('image');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');

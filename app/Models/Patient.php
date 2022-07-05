@@ -17,6 +17,7 @@ class Patient extends Model
     'birthday',
     'gender',
     'department_id',
+    'image',
         ];
 
     protected $dates = [

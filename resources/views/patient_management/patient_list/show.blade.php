@@ -16,10 +16,9 @@
 
 
                                         <div class="c-header d-flex flex-wrap justify-content-center p-3 w-100">
-
                                             <div class="c-img-part">
                                                 <div class="img-part d-flex justify-content-center">
-                                                    <img src="{{ asset('img/logo.jpg') }}" class="rounded-circle"
+                                                    <img src="{{url('storage/patient/'.$patient->image)}}" class="rounded"
                                                         alt="Avatar" width="150px">
                                                 </div>
                                             </div>

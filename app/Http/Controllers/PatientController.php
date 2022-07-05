@@ -41,7 +41,19 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {        
+        //image Request
+      $img =  $request->get('image');
+      $folderPath = storage_path("app/public/patient/");
+      $image_parts = explode(";base64,", $img);
+      foreach ($image_parts as $key => $image){
+          $image_base64 = base64_decode($image);
+      }
+      $fileName = uniqid() . '.png';
+      $file = $folderPath . $fileName;
+      file_put_contents($file, $image_base64);
+      
          $patient = Patient::create([
+            'image' => $fileName,
             'first_name' => $request->last_name,
             'last_name' => $request->first_name,
             'middle_name' => $request->middle_name,

@@ -67,7 +67,7 @@
     <!-- Patient Modal store-->
     <div class="modal fade" id="store" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle" style="color: #033571;">Add Patient</h5>
@@ -89,6 +89,25 @@
                             </div>
 
                             <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <div class = "d-flex flex-column align-items-center ">
+                                        <div id="my_camera"></div>
+                                            <div>
+                                                <input type=button class="btn btn-sm btn-primary" value="Capture"
+                                                onClick="take_snapshot()">
+                                            </div>
+                                        </div>
+                                            <input type="hidden" name="image" class="image-tag">
+                                        </div>
+            
+                                    <div class="col-md-6">
+                                        <div id="results">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -374,4 +393,46 @@
             $('#store').modal('show');
         @endif
     </script>
+
+<!-- webcam setup -->
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#category-img-tag').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#cat_image").change(function() {
+        readURL(this);
+    });
+</script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+    Webcam.set({
+        width: 490,
+        height: 390,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach('#my_camera');
+
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img style = "width:480px; height:auto; padding:20px;" src="' + data_uri + '"/>';
+        });
+    }
+</script>
 @endsection
+
