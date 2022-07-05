@@ -73,7 +73,13 @@ class MedicineCategoryController extends Controller
      */
     public function update(Request $request, MedicineCategory $medicineCategory)
     {
-        //
+
+        $med_category = MedicineCategory::findorfail($request->id)->update([
+            'category_name' => $request->category
+        ]);
+
+        return redirect()->back();
+        
     }
 
     /**
