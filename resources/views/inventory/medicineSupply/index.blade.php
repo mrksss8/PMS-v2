@@ -70,9 +70,6 @@
                                                         data-med_class="{{ $medicine->medicine_classification }}"
                                                         data-brand_name="{{ $medicine->brand_name }}"
                                                         data-dosage="{{ $medicine->dosage }}">
-
-
-
                                                         <i class="far fa-edit"></i>
                                                         Add Stock
                                                     </button>
@@ -888,9 +885,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="update" enctype="multipart/form-data" method="POST">
-                    @csrf
+                <form id="update-medicine" enctype="multipart/form-data" method="POST">
                     @method('PUT')
+                    @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -1059,7 +1056,7 @@
 
             $('.med-add-stock').each(function() {
                 $(this).click(function(event) {
-                    $('#update').attr("action", "/medicine/update/" + $(this).data('uid') + "");
+                    $('#update-medicine').attr("action", "/medicine/update/" + $(this).data('uid') + "");
                     $('input[name="med_class"]').val($(this).data('type_of_med'));
                     $('input[name="type_of_medicine"]').val($(this).data('med_class'));
                     $('input[name="brand_name"]').val($(this).data('brand_name'));
